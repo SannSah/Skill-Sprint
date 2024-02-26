@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Palanquin:wght@100;200;300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+
+.login-input{
+    @apply h-12 rounded-lg bg-[#8b8b8b47] text-white px-4 outline-none focus:ring-offset-2 focus:ring-offset-highlight focus:ring-2 focus:ring-base_red;
+}
+.login-input-hover{
+    @apply h-12 rounded-lg bg-[#8b8b8b47] text-white px-4 outline-none hover:ring-offset-2 hover:ring-offset-highlight hover:ring-2 hover:ring-base_red;
+}
+.login-button{
+    @apply bg-black_punch text-white h-[60px] rounded-lg text-xl font-montserrat hover:bg-transparent hover:ring-2 hover:ring-offset-1 hover:ring-offset-highlight hover:ring-base_red;
+}
