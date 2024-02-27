@@ -5,6 +5,7 @@ const LoginInfo = () => {
         <div className="flex flex-col gap-4 mt-6 w-[80%]">
             <input type="text" placeholder="Admin Id" className="login-input login-input-hover font-montserrat" />
             <input type="password" placeholder="Password" className="login-input login-input-hover font-montserrat" />
+            <center className="text-black_punch font-montserrat">Sorry, your password was incorrect. Please double-check your password.</center>
             <a href="#" className="text-right text-white text-sm hover:text-base_red font-montserrat">Forget Password?</a>
             <button className="login-button">Login</button>
         </div>

@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        notoSans: ["Noto Sans Mono", "monospace"],
         palanquin: ["Palanquin", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
       },
