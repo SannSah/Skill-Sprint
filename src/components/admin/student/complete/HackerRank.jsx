@@ -1,9 +1,9 @@
-import { leetcode } from "../images";
-const Leetcode = () => {
+import { hackerrank } from "../../../../images";
+const HackerRank = () => {
   return (
-    <div className="ring-1 ring-highlight rounded-md relative">
-      <p className="font-montserrat font-semibold font-9xl text-yellow-500 ml-4 px-2 absolute top-[-12px] bg-primary">
-        Leetcode
+    <div className="ring-1 ring-highlight rounded-md relative my-4">
+      <p className="font-montserrat font-semibold font-9xl text-green-500 ml-4 px-2 absolute top-[-12px] bg-primary">
+        HackerRank
       </p>
       <div className="flex items-center">
         <div className="grid grid-cols-2 gap-6 py-4 px-10 w-full flex-1">
@@ -45,11 +45,14 @@ const Leetcode = () => {
           </div>
         </div>
         <div className="bg-white w-[130px] h-[130px] flex-none rounded-md overflow-hidden mr-3">
-          <img src={leetcode} className="bg-cover w-full h-full" />
+          <img
+            src={hackerrank}
+            className="object-cover w-full h-full scale-105"
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default Leetcode;
+export default HackerRank;

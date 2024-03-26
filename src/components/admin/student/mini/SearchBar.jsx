@@ -1,4 +1,4 @@
-import { search } from "../images";
+import { search } from "../../../../images";
 const SearchBar = () => {
   return (
     <div className="flex items-center h-[40px] mb-6">

@@ -1,4 +1,4 @@
-import { gfg } from "../images";
+import { gfg } from "../../../../images";
 const Gfg = () => {
   return (
     <div className="ring-1 ring-highlight rounded-md relative my-4">
