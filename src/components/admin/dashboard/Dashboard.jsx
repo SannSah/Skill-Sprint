@@ -3,6 +3,7 @@ import Header from "../../Header";
 import NavBar from "../../NavBar";
 import Student from "../student/mini/Student";
 import Ranking from "./Ranking";
+import CompleteStudentInfo from "../student/complete/CompleteStudentInfo";
 const Dashboard = () => {
   const [activeNav, setActiveNav] = useState(true);
   const handleDashboardActive = (currState) => {
@@ -23,6 +24,7 @@ const Dashboard = () => {
       </div>
       {activeNav && <Ranking />}
       {!activeNav && <Student />}
+      {/* <CompleteStudentInfo /> */}
     </div>
   );
 };

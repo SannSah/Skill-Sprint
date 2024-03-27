@@ -7,8 +7,8 @@ function App() {
     <div className="bg-primary  pb-6">
       {/* <AdminLogin /> */}
       {/* <StudentLogin /> */}
-      <StudentInfo />
-      {/* <Dashboard /> */}
+      {/* <StudentInfo /> */}
+      <Dashboard />
     </div>
   );
 }

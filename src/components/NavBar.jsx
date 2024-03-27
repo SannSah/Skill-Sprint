@@ -1,4 +1,5 @@
 import { account } from "../images";
+import Sessions from "./Sessions";
 const NavBar = ({ activeNav, handleDashboardActive, handleStudentActive }) => {
   return (
     <>
@@ -22,9 +23,7 @@ const NavBar = ({ activeNav, handleDashboardActive, handleStudentActive }) => {
           </a>
         </div>
         <div className="flex justify-center items-center text-white">
-          <select className="bg-transparent p-2 mr-2.5 text-green-500 outline outline-2 outline-primary rounded-md">
-            <option>2023-25 MCA</option>
-          </select>
+          <Sessions />
           <a className="mr-2 p-[3.5px] outline outline-2 outline-primary rounded-md hover:bg-primary hover:cursor-pointer">
             <img src={account} width={30} height={30} />
           </a>
