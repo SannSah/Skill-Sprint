@@ -5,7 +5,7 @@ const NavBar = ({ activeNav, handleDashboardActive, handleStudentActive }) => {
     <>
       <div className="w-10/12 h-[51px] bg-black_punch mx-auto mt-2 rounded-lg flex  justify-between items-center font-montserrat sticky top-[120px]">
         <div className="text-white font-medium h-[40px] flex justify-center">
-          <a
+          <a href="/admin/Ranking/"
             className={`p-2 rounded-md ml-1.5 w-[120px] h-[40px] hover:bg-primary text-center cursor-pointer ${
               activeNav ? "bg-primary" : "bg-transparent"
             }`}
@@ -13,7 +13,7 @@ const NavBar = ({ activeNav, handleDashboardActive, handleStudentActive }) => {
           >
             Dashboard
           </a>
-          <a
+          <a href="/admin/student/"
             className={`p-2 rounded-md ml-1.5 w-[120px] hover:bg-primary text-center cursor-pointer ${
               !activeNav ? "bg-primary" : "bg-transparent"
             }`}
