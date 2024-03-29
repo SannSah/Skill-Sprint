@@ -4,7 +4,13 @@ import { cuLogo } from "../images";
 const Sessions = () => {
   let [sessions, setSessions] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:8000/admin/dashboard/session").
+    const token = localStorage.getItem('token');
+    fetch("http://localhost:8000/admin/dashboard/session",{
+      method:'GET',
+      headers:{
+        'authorization':token
+      }
+    }).
       then((res) => {
         return res.json()
       }).

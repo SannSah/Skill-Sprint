@@ -10,7 +10,7 @@ const LoginInfo = () => {
 
   useEffect(() => {
     if (isValid) {
-      
+
       navigate('/admin/Ranking/', { replace: true });
     }
   }, [isValid, navigate]);
@@ -24,6 +24,7 @@ const LoginInfo = () => {
     })
       .then(response => {
         setValid(response.data.isValid);
+        localStorage.setItem('token', response.data.token);
       })
       .catch(error => {
         console.log(error);
