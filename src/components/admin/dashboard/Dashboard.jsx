@@ -4,6 +4,7 @@ import NavBar from "../../NavBar";
 import Student from "../student/mini/Student";
 import Ranking from "./Ranking";
 import CompleteStudentInfo from "../student/complete/CompleteStudentInfo";
+import { Outlet } from "react-router-dom";
 const Dashboard = () => {
   const [activeNav, setActiveNav] = useState(true);
   const handleDashboardActive = (currState) => {
@@ -22,8 +23,8 @@ const Dashboard = () => {
           handleStudentActive={handleStudentActive}
         />
       </div>
-      {activeNav && <Ranking />}
-      {!activeNav && <Student />}
+      {activeNav && <Outlet />}
+      {!activeNav && <Outlet />}
       {/* <CompleteStudentInfo /> */}
     </div>
   );

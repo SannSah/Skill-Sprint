@@ -1,29 +1,41 @@
 import { useRef, useState } from "react";
-import Dashboard from "./admin/dashboard/Dashboard";
-
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 const LoginInfo = () => {
+  let [isValid, setValid] = useState(false);
   const adminId = useRef("");
   const adminPassword = useRef("");
-  const [validateUser, setValidateUser] = useState(true);
+  const navigate = useNavigate();
 
-  const authenticateAdmin = () => {
-    if (
-      adminId.current.value === "mld" &&
-      adminPassword.current.value === "123"
-    ) {
-      <Dashboard />
-      console.log("Verefied")
-      setValidateUser(true);
+  useEffect(() => {
+    if (isValid) {
+
+      navigate('/admin/Ranking/', { replace: true });
     }
-    else{
-      setValidateUser(false);
-    }
-  };
+  }, [isValid, navigate]);
+
+  async function loginHandler(event) {
+
+    event.preventDefault();
+    axios.post('http://localhost:8000/admin/singin', {
+      username: adminId.current.value,
+      password: adminPassword.current.value
+    })
+      .then(response => {
+        setValid(response.data.isValid);
+        localStorage.setItem('token', response.data.token);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+  }
 
   return (
     <form
       className="w-full flex flex-col items-center gap-4"
-      onSubmit={authenticateAdmin}
+
     >
       <h2 className="font-montserrat font-bold text-3xl text-white mt-4">
         Admin Login
@@ -41,16 +53,16 @@ const LoginInfo = () => {
           className="login-input login-input-hover font-montserrat"
           ref={adminPassword}
         />
-        <center className={`"text-black_punch font-montserrat" ${validateUser ? "hidden" : "block"}`}>
+        {/* <center className={`"text-black_punch font-montserrat" ${validateUser ? "hidden" : "block"}`}>
           Sorry, your password was incorrect. Please double-check your password.
-        </center>
+        </center> */}
         <a
           href="#"
           className="text-right text-white text-sm hover:text-base_red font-montserrat"
         >
           Forget Password?
         </a>
-        <button type="submit" className="login-button">
+        <button onClick={loginHandler} type="submit" className="login-button">
           Login
         </button>
       </div>
