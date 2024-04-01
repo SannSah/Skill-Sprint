@@ -52,7 +52,8 @@ const personalInfoSchema = new mongoose.Schema({
     Gender: String,
     DOB: String,
     ContactNumber: String,
-    Email: String
+    Email: String,
+    session_id:String
 });
 
 const studentSchema = new mongoose.Schema({

@@ -8,23 +8,25 @@ const Ranking = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+
+    const session_id = "ObjectId('6601d18593dca14429f09ce8')";
+    const token = localStorage.getItem('token');
     fetch("http://localhost:8000/admin/dashboard/Ranking", {
-      method: "GET",
+      method: 'GET',
       headers: {
-        authorization: token,
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        if (data.inValidToken) {
-          navigate("/adminLogin", { replace: true });
-        }
-        setStudent(data.topTenStudents);
-      });
-  }, []);
+        'authorization': token,
+        'session_id': session_id
+      }
+    }).then((res) => {
+      return res.json();
+    }).then((data) => {
+      if (data.inValidToken) {
+        navigate("/adminLogin", { replace: true });
+      }
+      setStudent(data.topTenStudents);
+    });
+  }, [])
+
 
   const topThreeStudents = () => {
     const [first, second, third] =

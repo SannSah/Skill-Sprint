@@ -1,30 +1,33 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cuLogo } from "../constants";
+import axios from "axios";
 
 const StudentLogin = () => {
   const studentId = useRef("");
   const studentPassword = useRef("");
-  const [validateUser, setValidateUser] = useState(true);
+  const [validateUser, setValidateUser] = useState(false);
 
-  const authenticateStudent = () => {
-    if (
-      studentId.current.value === "mld" &&
-      studentPassword.current.value === "123"
-    ) {
-      console.log("Verefied");
-      setValidateUser(true);
-    } else {
-      setValidateUser(false);
-    }
+
+  const authenticateStudent = (event) => {
+    event.preventDefault();
+    axios.post('http://localhost:8000/student/signin', {
+      username: studentId.current.value,
+      password: studentPassword.current.value
+    })
+      .then((res) => {
+        setValidateUser(res.data.isValidUser);
+        localStorage.setItem('Studen_Tokem',res.data.token)
+        console.log(res.data.token);
+      }).catch((err)=>{console.log(err);
+      })
   };
-
   return (
     <div className="flex flex-col justify-start items-center gap-5 h-screen">
       <img src={cuLogo} className="mt-10" width={230} />
       <div className="w-[500px] min-h-[400px] bg-highlight rounded-lg shadow-neo">
         <form
           className="w-full flex flex-col items-center gap-4"
-          onSubmit={authenticateStudent}
+
         >
           <h2 className="font-montserrat font-bold text-3xl text-white mt-4">
             Student Login
@@ -43,9 +46,8 @@ const StudentLogin = () => {
               ref={studentPassword}
             />
             <center
-              className={`"text-black_punch font-montserrat" ${
-                validateUser ? "hidden" : "block"
-              }`}
+              className={`"text-black_punch font-montserrat" ${validateUser ? "hidden" : "block"
+                }`}
             >
               Sorry, your password was incorrect. Please double-check your
               password.
@@ -56,7 +58,7 @@ const StudentLogin = () => {
             >
               Forget Password?
             </a>
-            <button type="submit" className="login-button">
+            <button onClick={authenticateStudent} className="login-button">
               Login
             </button>
           </div>
