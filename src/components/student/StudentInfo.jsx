@@ -12,26 +12,10 @@ const StudentInfo = () => {
         <div className="mx-8 my-4 grid grid-cols-3 gap-4">
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
             <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-              First Name:
+              Name:
             </span>
             <p type="text" className="px-4">
               Saurabh
-            </p>
-          </div>
-          <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-            <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-              Middle Name:
-            </span>
-            <p type="text" className="px-4">
-              Singh
-            </p>
-          </div>
-          <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-            <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-              Last Name:
-            </span>
-            <p type="text" className="px-4">
-              Bisht
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -80,6 +64,14 @@ const StudentInfo = () => {
             </span>
             <p type="text" className="px-4">
               Bisht
+            </p>
+          </div>
+          <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+            <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+              Session:
+            </span>
+            <p type="text" className="px-4">
+              2023-25 MCA
             </p>
           </div>
         </div>

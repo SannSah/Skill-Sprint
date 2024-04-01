@@ -2,26 +2,23 @@ import { useState } from "react";
 import Header from "../Header";
 import StudentNavbar from "./StudentNavbar";
 import StudentInfo from "./StudentInfo";
+import { Outlet } from "react-router-dom";
 
 const StudentDashboard = () => {
-  const [activeNav, setActiveNav] = useState(true);
-  const handleDashboardActive = (currState) => {
-    setActiveNav(currState);
+  const [isActive, setIsActive] = useState("Dashboard");
+  const handleIsActive = (curr) => {
+    setIsActive(curr);
   };
-  const handleStudentActive = (currState) => {
-    setActiveNav(currState);
-  };
+
   return (
     <div className="">
       <div className="bg-primary sticky top-0 z-10 pb-4">
         <Header />
-        <StudentNavbar
-          activeNav={activeNav}
-          handleDashboardActive={handleDashboardActive}
-          handleStudentActive={handleStudentActive}
-        />
+        <StudentNavbar isActive={isActive} handleIsActive={handleIsActive} />
       </div>
-      {!activeNav && <StudentInfo />}
+      {isActive === "Dashboard" && <Outlet />}
+      {isActive === "StudentInfo" && <Outlet />}
+      {isActive === "StudentInput" && <Outlet />}
     </div>
   );
 };

@@ -12,7 +12,7 @@ async function adminDashBoard(req, res) {
       for (let i = 0; i < 10; i++) {
         studentsPersonalInfo.push(studentsDetails[i].personalInfo);
       }
-      res.json({ topTenStudens: studentsPersonalInfo });
+      res.json({ topTenStudents: studentsPersonalInfo });
     });
 
   } catch (err) {
