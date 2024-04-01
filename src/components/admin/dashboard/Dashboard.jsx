@@ -6,25 +6,19 @@ import Ranking from "./Ranking";
 import CompleteStudentInfo from "../student/complete/CompleteStudentInfo";
 import { Outlet } from "react-router-dom";
 const Dashboard = () => {
-  const [activeNav, setActiveNav] = useState(true);
-  const handleDashboardActive = (currState) => {
-    setActiveNav(true);
+  const [isActive, setIsActive] = useState("Dashboard");
+  const handleIsActive = (curr) => {
+    setIsActive(curr);
   };
-  const handleStudentActive = (currState) => {
-    setActiveNav(false);
-  };
+
   return (
     <div className="">
       <div className="bg-primary sticky top-0 z-10 pb-4">
         <Header />
-        <NavBar
-          activeNav={activeNav}
-          handleDashboardActive={handleDashboardActive}
-          handleStudentActive={handleStudentActive}
-        />
+        <NavBar isActive={isActive} handleIsActive={handleIsActive} />
       </div>
-      {activeNav && <Outlet />}
-      {!activeNav && <Outlet />}
+      {isActive === "Dashboard" && <Outlet />}
+      {isActive === "Student" && <Outlet />}
       {/* <CompleteStudentInfo /> */}
     </div>
   );
