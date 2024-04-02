@@ -73,6 +73,7 @@ const Ranking = () => {
             )
           );
         })}
+        {console.log(students)}
       </div>
     </div>
   );

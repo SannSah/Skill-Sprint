@@ -1,8 +1,8 @@
-import { account } from "../images";
 import Sessions from "./Sessions";
 import NavbarStyles from "./NavBar.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import AccountMenu from "./AccountMenu";
 const NavBar = ({ isActive, handleIsActive }) => {
   // const [isActive, setIsActive] = useState("Dashboard");
   return (
@@ -36,9 +36,7 @@ const NavBar = ({ isActive, handleIsActive }) => {
         </div>
         <div className="flex justify-center items-center text-white">
           <Sessions />
-          <a className="mr-2 p-[3.5px] outline outline-2 outline-primary rounded-md hover:bg-primary hover:cursor-pointer">
-            <img src={account} width={30} height={30} />
-          </a>
+          <AccountMenu />
         </div>
       </div>
     </>
