@@ -20,6 +20,7 @@ const Ranking = () => {
         navigate("/adminLogin", { replace: true });
       }
       setStudent(data.topTenStudents);
+
     });
   }, [])
   return (

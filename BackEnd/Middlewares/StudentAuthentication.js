@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
 import secretKey from '../SecretKey.js';
-import Admin from '../Models/AdminModel.js';
+import User from '../Models/UserModel.js';
 
-function Authentication(req, res, next) {
+function StudentAuthentication(req, res, next) {
   const token = req.headers.authorization;
   if (!token) {
     return res.sendStatus(401);
@@ -13,14 +13,18 @@ function Authentication(req, res, next) {
       console.error('JWT verification failed:', err);
       return res.status(403).json({ inValidToken: true });
     } else {
-      const admin=await Admin.findOne({_id:decoded.adminId});
-      if(!admin){
+      
+      const user = await User.findOne({_id:decoded.userId});
+      if (!user) {
         return res.status(403).json({ inValidToken: true });
       }
+      
       req.user = decoded;
+      req.rollNo=user.username;
+      req.session_id=user.session_id;
       next();
     }
   });
-}
 
-export default Authentication;
+}
+export default StudentAuthentication;

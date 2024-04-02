@@ -16,9 +16,9 @@ const StudentLogin = () => {
     })
       .then((res) => {
         setValidateUser(res.data.isValidUser);
-        localStorage.setItem('Studen_Tokem',res.data.token)
-        console.log(res.data.token);
-      }).catch((err)=>{console.log(err);
+        localStorage.setItem('Student_Token', res.data.Token);
+      }).catch((err) => {
+        console.log(err);
       })
   };
   return (
