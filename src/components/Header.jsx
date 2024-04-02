@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate=useNavigate();
   function onLogoCLick(){
-    navigate("/admin/Ranking/");
+    navigate("/admin/ranking");
   }
   return (
     <div className="flex justify-between xl:px-28 py-4 items-center">

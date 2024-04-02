@@ -1,9 +1,12 @@
+import { SessionList } from "../../../../store/session-list-store";
 import MiniStudentInfo from "./MiniStudentInfo";
 import SearchBar from "./SearchBar";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Student = () => {
   let [students, setStudent] = useState([]);
+  const {selectedSession} = useContext(SessionList);
+  console.log(selectedSession)
   const navigate = useNavigate();
   useEffect(() => {
     const session_id = "ObjectId('6601d18593dca14429f09ce8')";
