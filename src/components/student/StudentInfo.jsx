@@ -1,6 +1,21 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const StudentInfo = () => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    fetcData();
+  }, []);
+  async function fetcData() {
+    fetch("http://localhost:8000/student/PersonalInfo", {
+      headers: {
+        authorization: localStorage.getItem('Student_Token')
+      }
+    }).then((res) => { return res.json() }).then((data) => {
+      setUser(data);
+      console.log(data);
+    })
+
+  }
   const da = useRef("da");
   return (
     <div className="w-[80%] bg-primary shadow-neo rounded-lg p-3 mt-6 mx-auto">

@@ -1,13 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { cuLogo } from "../constants";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const StudentLogin = () => {
   const studentId = useRef("");
   const studentPassword = useRef("");
   const [validateUser, setValidateUser] = useState(false);
+  const navigate=useNavigate();
 
-
+  useEffect(()=>{
+    if(validateUser){
+      navigate("/student/ranking",{replace:true});
+    }
+  },[validateUser])
   const authenticateStudent = (event) => {
     event.preventDefault();
     axios.post('http://localhost:8000/student/signin', {
@@ -16,9 +22,9 @@ const StudentLogin = () => {
     })
       .then((res) => {
         setValidateUser(res.data.isValidUser);
-        localStorage.setItem('Studen_Tokem',res.data.token)
-        console.log(res.data.token);
-      }).catch((err)=>{console.log(err);
+        localStorage.setItem('Student_Token', res.data.Token);
+      }).catch((err) => {
+        console.log(err);
       })
   };
   return (

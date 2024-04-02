@@ -7,8 +7,8 @@ const StudentRanking = () => {
     const navigate = useNavigate();
   
     useEffect(() => {
-      const token = localStorage.getItem("token");
-      fetch("http://localhost:8000/admin/dashboard/Ranking", {
+      const token = localStorage.getItem("Student_Token");
+      fetch("http://localhost:8000/student/Ranking", {
         method: "GET",
         headers: {
           authorization: token,
@@ -21,6 +21,7 @@ const StudentRanking = () => {
           if (data.inValidToken) {
             navigate("/adminLogin", { replace: true });
           }
+          console.log(data.topTenStudents);
           setStudent(data.topTenStudents);
         });
     }, []);

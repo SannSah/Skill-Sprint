@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { rank1, rank2, rank3 } from "../../../images";
+import { SessionList } from "../../../store/session-list-store";
+
 
 const Ranking = () => {
+  const { selectedSession } = useContext(SessionList);
   let [students, setStudent] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
 
-    const session_id = "ObjectId('6601d18593dca14429f09ce8')";
+    // const session_name = "2022-2025 BCA";
     const token = localStorage.getItem('token');
     fetch("http://localhost:8000/admin/dashboard/Ranking", {
       method: 'GET',
       headers: {
         'authorization': token,
-        'session_id': session_id
+        'session_name': selectedSession
       }
     }).then((res) => {
       return res.json();
@@ -24,10 +26,12 @@ const Ranking = () => {
         navigate("/adminLogin", { replace: true });
       }
       setStudent(data.topTenStudents);
+      console.log(data.topTenStudents);
+
     });
-  }, [])
+  }, [selectedSession])
 
-
+  // console.log("Hello" + selectedSession);
   const topThreeStudents = () => {
     const [first, second, third] =
       students.length > 0

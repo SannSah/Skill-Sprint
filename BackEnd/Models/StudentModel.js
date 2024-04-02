@@ -53,7 +53,7 @@ const personalInfoSchema = new mongoose.Schema({
     DOB: String,
     ContactNumber: String,
     Email: String,
-    session_id:String
+    session:String
 });
 
 const studentSchema = new mongoose.Schema({
