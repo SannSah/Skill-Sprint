@@ -1,23 +1,21 @@
+import sessioncourses from "../../Models/SessionCourseModel.js";
 import Student from "../../Models/StudentModel.js";
 
 async function adminDashBoard(req, res) {
-  const session_id=req.headers.session_id;
+  const sessionName = req.headers.session_name;
   try {
-    const studentsPersonalInfo = [];
-    await Student.find({"personalInfo.session_id":session_id}).exec().then((result) => {
-      const studentsDetails = [...result];
-      studentsDetails.sort((studentDetail1, studentDetail2) => {
-        return (studentDetail2.CodingInfo[1].LeetCode.Ranking - studentDetail1.CodingInfo[1].LeetCode.Ranking);
-      });
+   
+    const students = await Student.find({ "personalInfo.session": sessionName})
+      .sort({ "CodingInfo.1.LeetCode.Ranking": -1 }) 
+      .limit(10);
 
-      for (let i = 0; i < 10; i++) {
-        studentsPersonalInfo.push(studentsDetails[i].personalInfo);
-      }
-      res.json({ topTenStudents: studentsPersonalInfo });
-    });
+    const topTenStudents = students.map(student => student.personalInfo);
 
+    res.json({ topTenStudents });
   } catch (err) {
-
+    console.error("Error in adminDashboard:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
+
 export default adminDashBoard;

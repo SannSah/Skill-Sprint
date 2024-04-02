@@ -1,6 +1,6 @@
 import StudentOptions from "./StudentOptions";
 
-const MiniStudentInfo = () => {
+const MiniStudentInfo = ({ student }) => {
   return (
     <>
       <div className="w-full min-h-[175px] bg-primary shadow-neo rounded-lg flex items-center p-3">
@@ -10,37 +10,37 @@ const MiniStudentInfo = () => {
             <div className="text-white flex">
               <span className="font-semibold flex-1">Roll Number</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">2310987143</p>
+              <p className="ml-2 flex-1">{student.RollNo}</p>
             </div>
             <div className="text-white flex">
               <span className="font-semibold flex-1">Mentor</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">Komal</p>
+              <p className="ml-2 flex-1">{student.Mentor}</p>
             </div>
             <div className="text-white flex">
               <span className="font-semibold flex-1">Full Name</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">Saurabh Singh Bisht</p>
+              <p className="ml-2 flex-1">{student.fullName}</p>
             </div>
             <div className="text-white flex">
               <span className="font-semibold flex-1">Gender</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">Male</p>
+              <p className="ml-2 flex-1">{student.Gender}</p>
             </div>
             <div className="text-white flex">
               <span className="font-semibold flex-1">DOB</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">07/08/2001</p>
+              <p className="ml-2 flex-1">{student.DOB}</p>
             </div>
             <div className="text-white flex">
               <span className="font-semibold flex-1">Contact Number</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">7508509501</p>
+              <p className="ml-2 flex-1">{student.ContactNumber}</p>
             </div>
             <div className="text-white flex">
               <span className="font-semibold flex-1">Email Id</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">singh.bisht750@gmail.com</p>
+              <p className="ml-2 flex-1">{student.Email}</p>
             </div>
           </div>
         </div>

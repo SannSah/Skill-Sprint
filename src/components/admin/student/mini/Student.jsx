@@ -5,17 +5,17 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Student = () => {
   let [students, setStudent] = useState([]);
-  const {selectedSession} = useContext(SessionList);
-  console.log(selectedSession)
+  const { selectedSession } = useContext(SessionList);
+  
   const navigate = useNavigate();
   useEffect(() => {
-    const session_id = "ObjectId('6601d18593dca14429f09ce8')";
+
     const token = localStorage.getItem('token');
     fetch("http://localhost:8000/admin/dashboard/students", {
       method: 'GET',
       headers: {
         'authorization': token,
-        'session_id': session_id
+        'session_name': selectedSession
       }
     }).then((res) => {
       return res.json();
@@ -26,13 +26,13 @@ const Student = () => {
       setStudent(data.totalStudents);
       console.log(data.totalStudents);
     });
-  }, [])
+  }, [selectedSession])
   return (
     <div className="w-10/12 h-screen mx-auto mt-[20px] px-4">
       <div>
         <SearchBar />
       </div>
-      <MiniStudentInfo />
+      {students.map((student) => <MiniStudentInfo student={student} />)}
     </div>
   );
 };

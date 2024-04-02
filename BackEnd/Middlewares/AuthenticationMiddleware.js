@@ -4,6 +4,7 @@ import Admin from '../Models/AdminModel.js';
 
 function Authentication(req, res, next) {
   const token = req.headers.authorization;
+  
   if (!token) {
     return res.sendStatus(401);
 
