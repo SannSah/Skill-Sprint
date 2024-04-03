@@ -21,13 +21,14 @@ const router = createBrowserRouter([
     children: [
       { path: "/adminLogin", element: <AdminLogin /> },
       { path: "/studentLogin", element: <StudentLogin /> },
-
+      {path:"/admin/student/completeInfo",element:<CompleteStudentInfo/>},
       {
         path: "/admin",
         element: <Dashboard />,
         children: [
           { path: "/admin/ranking", element: <Ranking /> },
           { path: "/admin/student", element: <Student /> },
+          
         ],
       },
       {

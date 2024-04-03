@@ -21,7 +21,7 @@ function StudentAuthentication(req, res, next) {
       
       req.user = decoded;
       req.rollNo=user.username;
-      req.session_id=user.session_id;
+      
       next();
     }
   });

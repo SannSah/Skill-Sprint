@@ -3,11 +3,11 @@ import { createContext, useEffect, useState } from "react";
 export const SessionList = createContext({
   selectedSession: "",
   sessionList: [],
-  handleSelectedSession: () => {},
+  handleSelectedSession: () => { },
 });
 
 const SessionListProvider = ({ children }) => {
-  let [selectedSession, setSelectedSession] = useState("");
+  let [selectedSession, setSelectedSession] = useState("2022-2025 BCA");
   let [sessionList, setSessionList] = useState([]);
   const addAllSessions = (data) => {
     setSessionList([...data]);

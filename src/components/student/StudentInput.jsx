@@ -27,8 +27,82 @@ const StudentInput = () => {
   const xPercentage = useRef("");
   const xPassingYear = useRef("");
 
-  const handleStudentData = (event) => {
+  const handleStudentData = async (event) => {
     event.preventDefault();
+  //   const student={
+  //     "personalInfo": {
+  //      "RollNo":rollNo,
+  //      "Mentor": mentor,
+  //        "fullName": fullName,
+  //          "Gender": gender,
+  //            "DOB": dob,
+  //              "ContactNumber": ContactNumber,
+  //                "Email": collegeMailId,
+                   
+  //    },
+  //    "CodingInfo": [
+  //      {
+  //        "CodeChef": {
+  //          "UserID": "shiva182",
+  //          "TotalQuestionSolver": 137,
+  //          "Ranking": 645631,
+  //          "Easy": "200/900",
+  //          "Medium": "35/500",
+  //          "Hard": "35/500"
+  //        }
+  //      },
+  //      {
+  //        "LeetCode": {
+  //          "UserID": "shiva182",
+  //          "TotalQuestionSolver": 137,
+  //          "Ranking": 645631,
+  //          "Easy": "200/900",
+  //          "Medium": "35/500",
+  //          "Hard": "35/500"
+  //        }
+  //      },
+  //      {
+  //        "GFG": {
+  //          "UserID": "shiva182",
+  //          "TotalQuestionSolver": 137,
+  //          "Ranking": 645631,
+  //          "Easy": "200/900",
+  //          "Medium": "35/500",
+  //          "Hard": "35/500"
+  //        }
+  //      },
+  //      {
+  //        "HackerRank": {
+  //          "UserID": "shiva182",
+  //          "TotalQuestionSolver": 137,
+  //          "Ranking": 645631,
+  //          "Easy": "200/900",
+  //          "Medium": "35/500",
+  //          "Hard": "35/500"
+  //        }
+  //      }
+  //    ],
+  //      "academicinfo": [
+  //        {
+  //          "CurrentCourse": {
+  //            "institute": "Chitkara University Institute Of Engineering and Technology, Jhansla",
+  //            "department": "Computer Applications",
+  //            "program": "MCA",
+  //            "branch": "MCA",
+  //            "cgpa": 9.8,
+  //            "session": 1998,
+  //            "semester": 2
+  //          }
+  //        }
+  //      ]
+  //  }
+  //   await fetch("http://localhost:8000/student/AddStudent",{
+  //     method:"POST",
+  //     body:{
+  //       user:
+  //     }
+  //   })
+    
   };
   return (
     <>
