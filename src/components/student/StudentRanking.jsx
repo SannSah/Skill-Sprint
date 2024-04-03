@@ -11,8 +11,7 @@ const StudentRanking = () => {
       fetch("http://localhost:8000/student/Ranking", {
         method: "GET",
         headers: {
-          authorization: token,
-        },
+          authorization: token,        },
       })
         .then((res) => {
           return res.json();

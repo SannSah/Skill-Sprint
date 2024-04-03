@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Student = () => {
   let [students, setStudent] = useState([]);
   const { selectedSession } = useContext(SessionList);
-  
+
   const navigate = useNavigate();
   useEffect(() => {
 
@@ -27,6 +27,13 @@ const Student = () => {
       console.log(data.totalStudents);
     });
   }, [selectedSession])
+
+  useEffect(() => {
+    // Code to run when the component mounts or re-mounts (such as when navigating back)
+    console.log('Component mounted or re-mounted');
+    // Perform any necessary actions here
+    // For example, fetch data from an API or update state
+  }, []);
   return (
     <div className="w-10/12 h-screen mx-auto mt-[20px] px-4">
       <div>

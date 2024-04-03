@@ -46,7 +46,7 @@ const currentCourseSchema = new mongoose.Schema({
 });
 
 const personalInfoSchema = new mongoose.Schema({
-    RollNo: Number,
+    RollNo: String,
     Mentor: String,
     fullName: String,
     Gender: String,

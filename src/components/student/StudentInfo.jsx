@@ -2,22 +2,32 @@ import { useEffect, useRef, useState } from "react";
 
 const StudentInfo = () => {
   const [user, setUser] = useState({});
-  useEffect(() => {
-    fetcData();
-  }, []);
-  async function fetcData() {
-    fetch("http://localhost:8000/student/PersonalInfo", {
-      headers: {
-        authorization: localStorage.getItem('Student_Token')
-      }
-    }).then((res) => { return res.json() }).then((data) => {
-      setUser(data);
-      console.log(data);
-    })
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  async function fetchData() {
+    try {
+      const response = await fetch("http://localhost:8000/student/PersonalInfo", {
+        headers: {
+          authorization: localStorage.getItem('Student_Token')
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setUser(data);
+      console.log(data.StudenCompleteInfo.CodingInfo[1]?.LeetCode?.UserID); // Use optional chaining to safely access nested properties
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   }
+
   const da = useRef("da");
   return (
+
     <div className="w-[80%] bg-primary shadow-neo rounded-lg p-3 mt-6 mx-auto">
       <p className="text-white text-3xl font-medium mx-auto block text-center">
         Student Information
@@ -30,7 +40,7 @@ const StudentInfo = () => {
               Name:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.personalInfo?.fullName ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -38,7 +48,7 @@ const StudentInfo = () => {
               Phone No.:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.personalInfo?.ContactNumber ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -46,23 +56,16 @@ const StudentInfo = () => {
               College Mail Id:
             </span>
             <p type="text" className="px-4">
-              Singh
+              {user?.StudenCompleteInfo?.personalInfo?.Email ?? 'N/A'}
             </p>
           </div>
-          <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-            <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-              Personal Mail Id:
-            </span>
-            <p type="text" className="px-4">
-              Bisht
-            </p>
-          </div>
+
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
             <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
               Roll No:
             </span>
             <p type="text" className="px-4">
-              Bisht
+              {user?.StudenCompleteInfo?.personalInfo?.RollNo ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -70,7 +73,7 @@ const StudentInfo = () => {
               DOB:
             </span>
             <p type="text" className="px-4">
-              Bisht
+              {user?.StudenCompleteInfo?.personalInfo?.DOB ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -78,7 +81,7 @@ const StudentInfo = () => {
               Mentor:
             </span>
             <p type="text" className="px-4">
-              Bisht
+              {user?.StudenCompleteInfo?.personalInfo?.Mentor ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -86,7 +89,7 @@ const StudentInfo = () => {
               Session:
             </span>
             <p type="text" className="px-4">
-              2023-25 MCA
+              {user?.StudenCompleteInfo?.personalInfo?.session ?? 'N/A'}
             </p>
           </div>
         </div>
@@ -101,7 +104,7 @@ const StudentInfo = () => {
               User Id:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[1]?.LeetCode?.UserID ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -109,7 +112,7 @@ const StudentInfo = () => {
               Total Questions Solved:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[1]?.LeetCode?.TotalQuestionSolver ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -117,7 +120,7 @@ const StudentInfo = () => {
               Ranking:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[1]?.LeetCode?.Ranking ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -125,7 +128,7 @@ const StudentInfo = () => {
               Easy:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[1]?.LeetCode?.Easy ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -133,7 +136,7 @@ const StudentInfo = () => {
               Medium:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[1]?.LeetCode?.Medium ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -141,7 +144,7 @@ const StudentInfo = () => {
               Hard:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[1]?.LeetCode?.Hard ?? 'N/A'}
             </p>
           </div>
         </div>
@@ -152,7 +155,7 @@ const StudentInfo = () => {
               User Id:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[3]?.HackeRank?.UserID ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -160,7 +163,7 @@ const StudentInfo = () => {
               Total Questions Solved:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[3]?.HackeRank?.TotalQuestionSolver ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -168,7 +171,7 @@ const StudentInfo = () => {
               Ranking:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[3]?.HackeRank?.Ranking ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -176,7 +179,7 @@ const StudentInfo = () => {
               Easy:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[3]?.HackeRank?.Easy ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -184,7 +187,7 @@ const StudentInfo = () => {
               Medium:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[3]?.HackeRank?.Medium ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -192,7 +195,7 @@ const StudentInfo = () => {
               Hard:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[3]?.HackeRank?.Hard ?? 'N/A'}
             </p>
           </div>
         </div>
@@ -203,7 +206,7 @@ const StudentInfo = () => {
               User Id:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[0]?.CodeChef?.UserID ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -211,7 +214,7 @@ const StudentInfo = () => {
               Total Questions Solved:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[0]?.CodeChef?.TotalQuestionSolver ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -219,7 +222,7 @@ const StudentInfo = () => {
               Ranking:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[0]?.CodeChef?.Ranking ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -227,7 +230,7 @@ const StudentInfo = () => {
               Easy:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[0]?.CodeChef?.Easy ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -235,7 +238,7 @@ const StudentInfo = () => {
               Medium:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[0]?.CodeChef?.Medium ?? 'N/A'}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -243,7 +246,7 @@ const StudentInfo = () => {
               Hard:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {user?.StudenCompleteInfo?.CodingInfo[0]?.CodeChef?.Hard ?? 'N/A'}
             </p>
           </div>
         </div>
@@ -254,7 +257,7 @@ const StudentInfo = () => {
               User Id:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.UserID} */}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -262,7 +265,7 @@ const StudentInfo = () => {
               Total Questions Solved:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.TotalQuestionSolver} */}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -270,7 +273,7 @@ const StudentInfo = () => {
               Ranking:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Ranking} */}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -278,7 +281,7 @@ const StudentInfo = () => {
               Easy:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Easy} */}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -286,7 +289,7 @@ const StudentInfo = () => {
               Medium:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Medium} */}
             </p>
           </div>
           <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -294,7 +297,7 @@ const StudentInfo = () => {
               Hard:
             </span>
             <p type="text" className="px-4">
-              Saurabh
+              {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Hard} */}
             </p>
           </div>
         </div>
@@ -374,6 +377,7 @@ const StudentInfo = () => {
         </div>
       </div>
     </div>
+
   );
 };
 

@@ -7,7 +7,7 @@ async function StudentSignin(req, res) {
     const user = await User.findOne({ username: username, password: password });
 
     if (user) {
-      const token = jwt.sign({ userId: user._id, username: username }, secretKey);
+      const token = jwt.sign({ userId: user._id, username: username,session:user.session }, secretKey);
       console.log(token);
       res.json({ isValidUser: true, Token: token });
     } else {
