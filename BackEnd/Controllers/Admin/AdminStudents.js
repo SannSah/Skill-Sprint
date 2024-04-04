@@ -11,7 +11,7 @@ async function AdminStudents(req, res) {
     });
 
   } catch (err) {
-
+    console.log(err)
   }
 
 }

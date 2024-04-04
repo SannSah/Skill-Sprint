@@ -7,34 +7,36 @@ const StudentLogin = () => {
   const studentId = useRef("");
   const studentPassword = useRef("");
   const [validateUser, setValidateUser] = useState(false);
-  const navigate=useNavigate();
+  let [isValidError, setValidError] = useState(true);
 
-  useEffect(()=>{
-    if(validateUser){
-      navigate("/student/ranking",{replace:true});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (validateUser) {
+      navigate("/student/ranking", { replace: true });
     }
-  },[validateUser])
+  }, [validateUser]);
   const authenticateStudent = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:8000/student/signin', {
-      username: studentId.current.value,
-      password: studentPassword.current.value
-    })
+    axios
+      .post("http://localhost:8000/student/signin", {
+        username: studentId.current.value,
+        password: studentPassword.current.value,
+      })
       .then((res) => {
         setValidateUser(res.data.isValidUser);
-        localStorage.setItem('Student_Token', res.data.Token);
-      }).catch((err) => {
-        console.log(err);
+        setValidError(res.data.isValidUser);
+        localStorage.setItem("Student_Token", res.data.Token);
       })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="flex flex-col justify-start items-center gap-5 h-screen">
       <img src={cuLogo} className="mt-10" width={230} />
       <div className="w-[500px] min-h-[400px] bg-highlight rounded-lg shadow-neo">
-        <form
-          className="w-full flex flex-col items-center gap-4"
-
-        >
+        <form className="w-full flex flex-col items-center gap-4">
           <h2 className="font-montserrat font-bold text-3xl text-white mt-4">
             Student Login
           </h2>
@@ -52,8 +54,9 @@ const StudentLogin = () => {
               ref={studentPassword}
             />
             <center
-              className={`"text-black_punch font-montserrat" ${validateUser ? "hidden" : "block"
-                }`}
+              className={`"text-black_punch font-montserrat" ${
+                isValidError ? "hidden" : "block"
+              }`}
             >
               Sorry, your password was incorrect. Please double-check your
               password.

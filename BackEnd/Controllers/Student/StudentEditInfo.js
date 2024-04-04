@@ -2,7 +2,7 @@ import PermittedStudents from "../../Models/PermittedStudentModel.js";
 
 async function StudentEditInfo(req, res) {
   const rollNo = req.rollNo;
-  console.log(rollNo);
+
   const student = await PermittedStudents.findOne({ rollNo: rollNo });
   if (student) {
     res.json({ allowedToEdit: true });

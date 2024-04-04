@@ -4,7 +4,6 @@ async function StudentPersonalInfo(req, res) {
   const user_rollNo = req.user.username + "";
 
   const user = await Student.findOne({ 'personalInfo.RollNo': user_rollNo });
-  console.log(user);
   res.json({ StudenCompleteInfo: user });
 }
 export default StudentPersonalInfo;
