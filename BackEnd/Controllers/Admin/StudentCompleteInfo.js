@@ -1,10 +1,10 @@
 import Student from "../../Models/StudentModel.js";
 
 async function studentCompleteInfo(req, res) {
+  const studentRollNo = req.headers._id;
   
-  const student_id = req.headers._id;
   try {
-    const studentInfo = await Student.findOne({ _id: student_id }).lean();
+    const studentInfo = await Student.findOne({ 'personalInfo.RollNo': studentRollNo });
     res.json(studentInfo);
   } catch (error) {
     console.error(error);

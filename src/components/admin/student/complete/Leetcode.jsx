@@ -1,5 +1,5 @@
 import { leetcode } from "../../../../images";
-const Leetcode = () => {
+const Leetcode = ({ leetCode }) => {
   return (
     <div className="ring-1 ring-highlight rounded-md relative">
       <p className="font-montserrat font-semibold font-9xl text-yellow-500 ml-4 px-2 absolute top-[-12px] bg-primary">
@@ -11,12 +11,12 @@ const Leetcode = () => {
             <div className="text-white flex">
               <span className="font-semibold flex-1">User Id</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">ssb750</p>
+              <p className="ml-2 flex-1">{leetCode.UserID}</p>
             </div>
             <div className="text-white flex">
               <span className="font-semibold flex-1">Ranking</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">645631</p>
+              <p className="ml-2 flex-1">{leetCode.Ranking}</p>
             </div>
           </div>
           <div className="grid grid-rows-4 gap-2">
@@ -25,22 +25,22 @@ const Leetcode = () => {
                 Total Question Solved
               </span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">137</p>
+              <p className="ml-2 flex-1">{leetCode.TotalQuestionSolver}</p>
             </div>
             <div className="text-white flex ml-4">
               <span className="font-semibold flex-1">Easy</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">200/900</p>
+              <p className="ml-2 flex-1">{leetCode.Easy}</p>
             </div>
             <div className="text-white flex ml-4">
               <span className="font-semibold flex-1">Medium</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">35/500</p>
+              <p className="ml-2 flex-1">{leetCode.Medium}</p>
             </div>
             <div className="text-white flex ml-4">
               <span className="font-semibold flex-1">Hard</span>
               <span className="font-semibold flex-none"> :</span>
-              <p className="ml-2 flex-1">35/500</p>
+              <p className="ml-2 flex-1">{leetCode.Hard}</p>
             </div>
           </div>
         </div>

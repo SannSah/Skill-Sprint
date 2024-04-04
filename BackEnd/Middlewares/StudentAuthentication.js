@@ -20,7 +20,8 @@ function StudentAuthentication(req, res, next) {
       }
 
       req.user = decoded;
-      req.rollNo = user.username;
+
+      req.rollNo=user.username;
       next();
     }
   });

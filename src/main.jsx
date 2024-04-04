@@ -13,6 +13,8 @@ import CompleteStudentInfo from "./components/admin/student/complete/CompleteStu
 import Student from "./components/admin/student/mini/Student.jsx";
 import Ranking from "./components/admin/dashboard/Ranking.jsx";
 import StudentRanking from "./components/student/StudentRanking.jsx";
+import CompleteStudentInfoProvider from "./store/complete-student-info.jsx";
+import StudentInputInfoProvider from "./store/student-store/student-input.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/adminLogin", element: <AdminLogin /> },
       { path: "/studentLogin", element: <StudentLogin /> },
-      {path:"/admin/student/completeInfo",element:<CompleteStudentInfo/>},
+      {path:"/admin/student/completeInfo/:id",element:<CompleteStudentInfoProvider><CompleteStudentInfo/></CompleteStudentInfoProvider>},
       {
         path: "/admin",
         element: <Dashboard />,
@@ -37,11 +39,11 @@ const router = createBrowserRouter([
         children: [
           { path: "/student/ranking", element: <StudentRanking /> },
           { path: "/student/studentInfo", element: <StudentInfo /> },
-          { path: "/student/studentInput", element: <StudentInput /> },
+          { path: "/student/studentInput", element: <StudentInputInfoProvider><StudentInput /></StudentInputInfoProvider> },
         ],
       },
 
-      { path: "/admin/studentInfo", element: <CompleteStudentInfo /> },
+      // { path: "/admin/studentInfo", element: <CompleteStudentInfo /> },
     ],
   },
 ]);

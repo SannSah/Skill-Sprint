@@ -1,42 +1,39 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 const LoginInfo = () => {
   let [isValid, setValid] = useState(false);
+  let [isValidError, setValidError] = useState(true);
   const adminId = useRef("");
   const adminPassword = useRef("");
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isValid) {
-
-      navigate('/admin/Ranking/', { replace: true });
+      navigate("/admin/Ranking/", { replace: true });
     }
   }, [isValid, navigate]);
 
   async function loginHandler(event) {
-
     event.preventDefault();
-    axios.post('http://localhost:8000/admin/singin', {
-      username: adminId.current.value,
-      password: adminPassword.current.value
-    })
-      .then(response => {
-        setValid(response.data.isValid);
-        localStorage.setItem('token', response.data.token);
+    axios
+      .post("http://localhost:8000/admin/singin", {
+        username: adminId.current.value,
+        password: adminPassword.current.value,
       })
-      .catch(error => {
+      .then((response) => {
+        setValid(response.data.isValid);
+        setValidError(response.data.isValid);
+        localStorage.setItem("token", response.data.token);
+      })
+      .catch((error) => {
         console.log(error);
       });
-
   }
 
   return (
-    <form
-      className="w-full flex flex-col items-center gap-4"
-
-    >
+    <form className="w-full flex flex-col items-center gap-4">
       <h2 className="font-montserrat font-bold text-3xl text-white mt-4">
         Admin Login
       </h2>
@@ -53,9 +50,13 @@ const LoginInfo = () => {
           className="login-input login-input-hover font-montserrat"
           ref={adminPassword}
         />
-        {/* <center className={`"text-black_punch font-montserrat" ${validateUser ? "hidden" : "block"}`}>
+        <center
+          className={`"text-black_punch font-montserrat" ${
+            isValidError ? "hidden" : "block"
+          }`}
+        >
           Sorry, your password was incorrect. Please double-check your password.
-        </center> */}
+        </center>
         <a
           href="#"
           className="text-right text-white text-sm hover:text-base_red font-montserrat"
