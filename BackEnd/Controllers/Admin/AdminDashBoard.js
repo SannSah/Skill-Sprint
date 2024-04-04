@@ -8,7 +8,6 @@ async function adminDashBoard(req, res) {
     const students = await Student.find({ "personalInfo.session": sessionName })
       .sort({ "CodingInfo.1.LeetCode.Ranking": -1 })
       .limit(10);
-    console.log(students.length);
     const topTenStudents = students.map(student => student.personalInfo);
 
     res.json({ topTenStudents });

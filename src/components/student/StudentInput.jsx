@@ -1,7 +1,21 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import StudentInputStyle from "./StudentInput.module.css";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 const StudentInput = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetch("http://localhost:8000/student/validUser", {
+      headers: {
+        'authorization': localStorage.getItem("Student_Token")
+      }
+    }).then((res) => res.json()).then((data) => {
+      if (data.inValidToken) {
+        navigate("/studentLogin", { replace: true });
+      }
+    })
+  }, [])
   const fullName = useRef("");
   const rollNo = useRef("");
   const gender = useRef("");
@@ -27,82 +41,51 @@ const StudentInput = () => {
   const xPercentage = useRef("");
   const xPassingYear = useRef("");
 
-  const handleStudentData = async (event) => {
+  const handleStudentData = (event) => {
     event.preventDefault();
-  //   const student={
-  //     "personalInfo": {
-  //      "RollNo":rollNo,
-  //      "Mentor": mentor,
-  //        "fullName": fullName,
-  //          "Gender": gender,
-  //            "DOB": dob,
-  //              "ContactNumber": ContactNumber,
-  //                "Email": collegeMailId,
-                   
-  //    },
-  //    "CodingInfo": [
-  //      {
-  //        "CodeChef": {
-  //          "UserID": "shiva182",
-  //          "TotalQuestionSolver": 137,
-  //          "Ranking": 645631,
-  //          "Easy": "200/900",
-  //          "Medium": "35/500",
-  //          "Hard": "35/500"
-  //        }
-  //      },
-  //      {
-  //        "LeetCode": {
-  //          "UserID": "shiva182",
-  //          "TotalQuestionSolver": 137,
-  //          "Ranking": 645631,
-  //          "Easy": "200/900",
-  //          "Medium": "35/500",
-  //          "Hard": "35/500"
-  //        }
-  //      },
-  //      {
-  //        "GFG": {
-  //          "UserID": "shiva182",
-  //          "TotalQuestionSolver": 137,
-  //          "Ranking": 645631,
-  //          "Easy": "200/900",
-  //          "Medium": "35/500",
-  //          "Hard": "35/500"
-  //        }
-  //      },
-  //      {
-  //        "HackerRank": {
-  //          "UserID": "shiva182",
-  //          "TotalQuestionSolver": 137,
-  //          "Ranking": 645631,
-  //          "Easy": "200/900",
-  //          "Medium": "35/500",
-  //          "Hard": "35/500"
-  //        }
-  //      }
-  //    ],
-  //      "academicinfo": [
-  //        {
-  //          "CurrentCourse": {
-  //            "institute": "Chitkara University Institute Of Engineering and Technology, Jhansla",
-  //            "department": "Computer Applications",
-  //            "program": "MCA",
-  //            "branch": "MCA",
-  //            "cgpa": 9.8,
-  //            "session": 1998,
-  //            "semester": 2
-  //          }
-  //        }
-  //      ]
-  //  }
-  //   await fetch("http://localhost:8000/student/AddStudent",{
-  //     method:"POST",
-  //     body:{
-  //       user:
-  //     }
-  //   })
-    
+    const studentInfo = {
+      personalInfo: {
+        fullName: fullName.current.value,
+        Gender: gender.current.value,
+        Mentor: mentor.current.value,
+        DOB: dob.current.value,
+        Email: collegeMailId.current.value,
+        session: session.current.value,
+        ContactNumber: phoneNumber.current.value
+      },
+      CodingId: [codeChefId.current.value, leetcodeId.current.value, gfgId.current.value, hackerRankId.current.value],
+      Inter: {
+        Board: xiBoard.current.value,
+        Stream: xiStream.current.value,
+        Percentage: xiPercentage.current.value,
+        PassingYear: xiPassingYear.current.value
+      },
+      HighSchool: {
+        Board: xBoard.current.value,
+        Stream: xStream.current.value,
+        Percentage: xPercentage.current.value,
+        PassingYear: xPassingYear.current.value
+      }
+    };
+
+    axios.post("http://localhost:8000/student/Add", {
+      student: studentInfo
+    }, {
+      headers: {
+        'Authorization': localStorage.getItem("Student_Token"),
+        'Content-Type': 'application/json'
+      }
+    })
+      .then((response) => {
+        const data = response.data;
+        if (data.inValidToken) {
+          navigate("/studentLogin", { replace: true });
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
   };
   return (
     <>

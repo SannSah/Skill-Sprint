@@ -9,7 +9,7 @@ const StudentOptions = () => {
         authorization: localStorage.getItem("token")
       },
       body: JSON.stringify({
-        rollNo: 2210987090
+        
       })
     })
   }

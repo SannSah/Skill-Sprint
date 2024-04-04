@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
-import secretKey from '../SecretKey.js';
-import User from '../Models/UserModel.js';
+import secretKey from '../../SecretKey.js';
+import User from '../../Models/UserModel.js';
 
-function StudentAuthentication(req, res, next) {
+function StudentIsValid(req, res, next) {
   const token = req.headers.authorization;
   if (!token) {
     return res.sendStatus(401);
@@ -17,13 +17,11 @@ function StudentAuthentication(req, res, next) {
       const user = await User.findOne({ _id: decoded.userId });
       if (!user) {
         return res.status(403).json({ inValidToken: true });
+      }else{
+        res.json({inValidToken:false});
       }
-
-      req.user = decoded;
-      req.rollNo = user.username;
-      next();
     }
   });
 
 }
-export default StudentAuthentication;
+export default StudentIsValid;
