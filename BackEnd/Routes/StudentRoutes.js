@@ -5,12 +5,14 @@ import StudentRanking from "../Controllers/Student/StudentRanking.js";
 import StudentPersonalInfo from "../Controllers/Student/StudentPersonalInfo.js";
 import StudentEditInfo from "../Controllers/Student/StudentEditInfo.js";
 import Submission from "../Controllers/Student/StudentInputSubmission.js";
+import StudentIsValid from "../Controllers/Student/StudentIsValid.js";
 
 const studentRouter = express.Router();
 
 studentRouter.post("/signin", StudentSignin)
-studentRouter.get("/Ranking",StudentAuthentication,StudentRanking);
-studentRouter.get("/PersonalInfo",StudentAuthentication,StudentPersonalInfo);
-studentRouter.get("/Edit",StudentAuthentication,StudentEditInfo);
-studentRouter.post("/AddStudent",StudentAuthentication,Submission);
+studentRouter.get("/Ranking", StudentAuthentication, StudentRanking);
+studentRouter.get("/PersonalInfo", StudentAuthentication, StudentPersonalInfo);
+studentRouter.get("/Edit", StudentAuthentication, StudentEditInfo);
+studentRouter.post("/Add", StudentAuthentication, Submission);
+studentRouter.get("/validUser", StudentIsValid);
 export default studentRouter;
