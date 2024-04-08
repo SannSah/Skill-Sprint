@@ -1,12 +1,26 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import StudentInputStyle from "./StudentInput.module.css";
 import PersonalInfoInput from "./input/PersonalInfoInput";
 import CodingInfoInput from "./input/CodingInfoInput";
 import AcademicsInfoInput from "./input/AcademicsInfoInput";
 import { StudentInputInfo } from "../../store/student-store/student-input";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const StudentInput = () => {
   const { handleStudentResetData, handleStudentSubmitData } = useContext(StudentInputInfo);
+  const navigate = useNavigate();
+  useEffect(() => {
+    fetch("http://localhost:8000/student/validUser", {
+      headers: {
+        'authorization': localStorage.getItem("Student_Token")
+      }
+    }).then((res) => res.json()).then((data) => {
+      if (data.inValidToken) {
+        navigate("/studentLogin", { replace: true });
+      }
+    })
+  }, [])
   return (
     <>
       <form

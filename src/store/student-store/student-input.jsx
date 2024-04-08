@@ -1,4 +1,7 @@
 import { createContext, useRef } from "react";
+import axios from 'axios';
+import { useState } from "react";
+
 
 export const StudentInputInfo = createContext({
   fullName: "",
@@ -32,10 +35,11 @@ export const StudentInputInfo = createContext({
   xPercentage: "",
   xPassingYear: "",
 
-  handleStudentResetData: () => {},
-  handleStudentSubmitData: () => {},
+  handleStudentResetData: () => { },
+  handleStudentSubmitData: () => { },
 });
 const StudentInputInfoProvider = ({ children }) => {
+  const [inValidId, setInvalidId] = useState("success");
   const fullName = useRef("");
   const rollNo = useRef("");
   const gender = useRef("");
@@ -101,7 +105,73 @@ const StudentInputInfoProvider = ({ children }) => {
   };
   const handleStudentSubmitData = (event) => {
     event.preventDefault();
+    const studentInfo = {
+      personalInfo: {
+        fullName: fullName.current.value,
+        RollNo: rollNo.current.value,
+        Gender: gender.current.value,
+        Mentor: mentor.current.value,
+        DOB: dob.current.value,
+        Email: collegeMailId.current.value,
+        session: session.current.value,
+        ContactNumber: phoneNumber.current.value,
+        EditInfo: "Not Allowed"
+      },
+      // Extracting values from useRef objects
+      CodingId: [codeChefId.current.value, leetcodeId.current.value, gfgId.current.value, hackerRankId.current.value],
+      CurrentCourse: {
+        Institute: institude.current.value,
+        Department: department.current.value,
+        Program: program.current.value,
+        Specialization: specialization.current.value,
+        CGPA: cgpa.current.value,
+        CurrentSemester: currentSemester.current.value
+      },
+      Inter: {
+        Board: xiBoard.current.value,
+        Stream: xiStream.current.value,
+        Percentage: xiPercentage.current.value,
+        PassingYear: xiPassingYear.current.value
+      },
+      HighSchool: {
+        Board: xBoard.current.value,
+        Stream: xStream.current.value,
+        Percentage: xPercentage.current.value,
+        PassingYear: xPassingYear.current.value
+      }
+    };
+
+    // Fetching data and handling responses
+    fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeId.current.value}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setInvalidId(data.status);
+        console.log(data.status);
+        if (data.status === 'success') {
+          axios.post("http://localhost:8000/student/Add", {
+            student: studentInfo
+          }, {
+            headers: {
+              'Authorization': localStorage.getItem("Student_Token"),
+              'Content-Type': 'application/json'
+            }
+          })
+            .then((response) => {
+              const data = response.data;
+              if (data.inValidToken) {
+                navigate("/studentLogin", { replace: true });
+              }
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
+
 
   return (
     <StudentInputInfo.Provider

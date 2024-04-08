@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
 import { account } from "../../images";
+import { useEffect, useState } from "react";
 const StudentNavbar = ({ isActive, handleIsActive }) => {
+  const [allowed,setAllowed]=useState(false);
+  useEffect(()=>{
+    fetch("http://localhost:8000/student/Edit",{
+      headers:{
+        authorization:localStorage.getItem('Student_Token')
+      }
+    }).then((res)=>res.json()).then((data)=>{
+      setAllowed(data.allowedToEdit);
+    },[])
+  })
   return (
     <>
       <div className="w-10/12 h-[51px] bg-black_punch mx-auto mt-2 rounded-lg flex  justify-between items-center font-montserrat sticky top-[120px]">
@@ -25,7 +36,7 @@ const StudentNavbar = ({ isActive, handleIsActive }) => {
           >
             View Info
           </Link>
-          <Link
+          {allowed&&<Link
             to={"/student/studentInput"}
             className={`p-2 rounded-md ml-1.5 w-[120px] hover:bg-primary text-center cursor-pointer ${
               isActive === "StudentInput" ? "bg-primary" : "bg-transparent"
@@ -35,7 +46,7 @@ const StudentNavbar = ({ isActive, handleIsActive }) => {
             }}
           >
             Update Info
-          </Link>
+          </Link>}
         </div>
         <div className="flex justify-center items-center text-white">
           <a className="mr-2 p-[3.5px] outline outline-2 outline-primary rounded-md hover:bg-primary hover:cursor-pointer">

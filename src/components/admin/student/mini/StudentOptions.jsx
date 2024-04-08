@@ -16,7 +16,7 @@ const StudentOptions = ({ studentId, studentRoll }) => {
           authorization: localStorage.getItem("token"),
         },
         body: JSON.stringify({
-          rollNo: 2210987090,
+          rollNo: studentRoll,
         }),
       }
     );
