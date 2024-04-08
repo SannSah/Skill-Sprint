@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <SessionListProvider>
-      <div className="">
+      <div className="h-[70vh]">
         <div className="bg-primary sticky top-0 z-10 pb-4">
           <Header />
           <NavBar isActive={isActive} handleIsActive={handleIsActive} />

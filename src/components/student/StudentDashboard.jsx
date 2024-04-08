@@ -18,10 +18,10 @@ const StudentDashboard = () => {
   }, []);
 
   return (
-    <div className="">
+    <div className="h-[65vh]">
       <div className="bg-primary sticky top-0 z-10 pb-4">
         <Header />
-        <StudentNavbar isActive={isActive} handleIsActive={handleIsActive} />
+        <StudentNavbar handleIsActive={handleIsActive} />
       </div>
       {isActive === "Dashboard" && <Outlet />}
       {isActive === "StudentInfo" && <Outlet />}

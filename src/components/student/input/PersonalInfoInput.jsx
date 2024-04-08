@@ -16,7 +16,7 @@ const PersonalInfoInput = () => {
   return (
     <div className="mx-20 my-14 text-white font-montserrat">
       <p className="text-lg font-medium">Personal Info</p>
-      <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+      <div className="mx-8 my-4 grid grid-cols-3 gap-4 ">
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
         >
@@ -38,6 +38,9 @@ const PersonalInfoInput = () => {
             ref={rollNo}
           />
           <div className={`${StudentInputStyle.label_input}`}>Roll Number</div>
+        </div>
+        <div className="row-span-3 ring-1 ">
+          <input type="file" accept="image/jpeg, image/jpg" />
         </div>
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
