@@ -18,7 +18,8 @@ function StudentIsValid(req, res) {
       if (!user) {
         return res.status(403).json({ inValidToken: true });
       }else{
-        res.json({inValidToken:false});
+        const userInfo={username:user.username,session:user.session}
+        res.json({inValidToken:false,UserInfo:userInfo});
       }
     }
   });

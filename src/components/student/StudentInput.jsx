@@ -1,14 +1,13 @@
-import { useContext, useEffect, useRef } from "react";
-import StudentInputStyle from "./StudentInput.module.css";
+import { useContext, useEffect, useRef, useState } from "react";
 import PersonalInfoInput from "./input/PersonalInfoInput";
 import CodingInfoInput from "./input/CodingInfoInput";
 import AcademicsInfoInput from "./input/AcademicsInfoInput";
 import { StudentInputInfo } from "../../store/student-store/student-input";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const StudentInput = () => {
   const { handleStudentResetData, handleStudentSubmitData } = useContext(StudentInputInfo);
+  const [user,setUser]=useState({});
   const navigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:8000/student/validUser", {
@@ -22,6 +21,9 @@ const StudentInput = () => {
       return res.json()}).then((data) => {
       if (data.inValidToken) {
         navigate("/studentLogin", { replace: true });
+      }else{
+        setUser(data.UserInfo);
+        
       }
     })
   }, [])
@@ -37,7 +39,7 @@ const StudentInput = () => {
         </p>
 
         {/* Persnal Info Input */}
-        <PersonalInfoInput></PersonalInfoInput>
+        <PersonalInfoInput user={user}></PersonalInfoInput>
 
         {/* Coding Input */}
         <CodingInfoInput></CodingInfoInput>

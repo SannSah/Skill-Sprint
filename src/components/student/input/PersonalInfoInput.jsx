@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import StudentInputStyle from "../StudentInput.module.css";
 import { StudentInputInfo } from "../../../store/student-store/student-input";
-const PersonalInfoInput = () => {
+const PersonalInfoInput = (props) => {
   const {
     fullName,
     rollNo,
@@ -35,6 +35,8 @@ const PersonalInfoInput = () => {
             type="text"
             className={`px-4 ${StudentInputStyle.input}`}
             placeholder=""
+            readOnly
+            value={props.user.username}
             ref={rollNo}
           />
           <div className={`${StudentInputStyle.label_input}`}>Roll Number</div>
@@ -45,12 +47,6 @@ const PersonalInfoInput = () => {
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
         >
-          {/* <input
-            type="text"
-            className={`px-4 ${StudentInputStyle.input}`}
-            placeholder=""
-            ref={gender}
-          /> */}
           <div className="flex justify-center">
             <p className="absolute top-[-12px] left-2 font-medium text-sm bg-primary px-2 ">
               Gender
@@ -125,6 +121,8 @@ const PersonalInfoInput = () => {
             type="text"
             className={`px-4 ${StudentInputStyle.input}`}
             placeholder=""
+            readOnly
+            value={props.user.session}
             ref={session}
           />
           <div className={`${StudentInputStyle.label_input}`}>Session</div>

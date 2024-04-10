@@ -146,7 +146,6 @@ const StudentInputInfoProvider = ({ children }) => {
     fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeId.current.value}`)
       .then((res) => res.json())
       .then((data) => {
-        setInvalidId(data.status);
         console.log(data.status);
         if (data.status === 'success') {
           axios.post("http://localhost:8000/student/Add", {
@@ -158,6 +157,7 @@ const StudentInputInfoProvider = ({ children }) => {
             }
           })
             .then((response) =>{
+              console.log(response);
               if(response.data.dataInserted){
                 navigate("/student/studentInfo",{replace:true})
               }
