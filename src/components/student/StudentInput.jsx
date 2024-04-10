@@ -15,7 +15,11 @@ const StudentInput = () => {
       headers: {
         'authorization': localStorage.getItem("Student_Token")
       }
-    }).then((res) => res.json()).then((data) => {
+    }).then((res) => {
+      if(!res.ok){
+        navigate("/studentLogin", { replace: true })
+      }
+      return res.json()}).then((data) => {
       if (data.inValidToken) {
         navigate("/studentLogin", { replace: true });
       }

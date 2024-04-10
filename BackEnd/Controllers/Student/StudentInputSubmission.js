@@ -20,12 +20,12 @@ async function Submission(req, res) {
       Hard: `${data.hardSolved + (Math.floor(Math.random() * 20) + 1)}/${data.totalHard}`
     }
     const leetcodeInfo = {
-      UserID: codechefId,
+      UserID: leetcodeId,
       TotalQuestionSolver: totalQuestionSolver,
       Ranking: data.ranking,
-      Easy: data.easy,
-      Medium: data.mediumSolved,
-      Hard: data.hardSolved
+      Easy: `${data.easySolved}/${data.totalEasy}`,
+      Medium: `${data.mediumSolved }/${data.totalMedium}`,
+      Hard: `${data.hardSolved}/${data.totalHard}`
     }
     const gfgInfo = {
       UserID: gfgId,
@@ -64,7 +64,6 @@ async function Submission(req, res) {
         res.json({ dataInserted: true });
       })
     }else{
-      console.log("Hello from else");
       Student.findOneAndUpdate({'personalInfo.RollNo':student.personalInfo.RollNo},student,{new:true}).then((result)=>{
         res.json({ dataInserted: true });
       })

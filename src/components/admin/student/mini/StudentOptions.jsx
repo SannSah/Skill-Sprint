@@ -4,7 +4,6 @@ import CompleteStudentInfo from "../complete/CompleteStudentInfo";
 import { CompleteStudentInfo as CompleteStudentInfoData } from "../../../../store/complete-student-info";
 
 const StudentOptions = ({ studentId, studentRoll }) => {
-  const { handleOnView } = useContext(CompleteStudentInfoData);
   // const []
   async function onUpdate() {
     await fetch(
@@ -46,7 +45,6 @@ const StudentOptions = ({ studentId, studentRoll }) => {
     <div className="h-full flex flex-col justify-center font-montserrat">
       <Link
         to={"/admin/student/completeInfo/" + `${studentRoll}`}
-        // onClick={() => handleOnView(studentRoll)}
         className="w-full py-2 bg-green-500 rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-green-500 text-center"
       >
         View

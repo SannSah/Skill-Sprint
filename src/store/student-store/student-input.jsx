@@ -1,6 +1,7 @@
 import { createContext, useRef } from "react";
 import axios from 'axios';
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 
 
 export const StudentInputInfo = createContext({
@@ -39,7 +40,7 @@ export const StudentInputInfo = createContext({
   handleStudentSubmitData: () => { },
 });
 const StudentInputInfoProvider = ({ children }) => {
-  const [inValidId, setInvalidId] = useState("success");
+  const navigate=useNavigate();
   const fullName = useRef("");
   const rollNo = useRef("");
   const gender = useRef("");
@@ -156,10 +157,9 @@ const StudentInputInfoProvider = ({ children }) => {
               'Content-Type': 'application/json'
             }
           })
-            .then((response) => {
-              const data = response.data;
-              if (data.inValidToken) {
-                navigate("/studentLogin", { replace: true });
+            .then((response) =>{
+              if(response.data.dataInserted){
+                navigate("/student/studentInfo",{replace:true})
               }
             })
             .catch((error) => {

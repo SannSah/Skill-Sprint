@@ -1,17 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { account } from "../../images";
 import { useEffect, useState } from "react";
-const StudentNavbar = ({ isActive, handleIsActive }) => {
+import StudentAccountMenu from "./StudentAccountMenu";
+
+  
+
+const StudentNavbar = ({ handleIsActive }) => {
   const [allowed,setAllowed]=useState(false);
   useEffect(()=>{
     fetch("http://localhost:8000/student/Edit",{
       headers:{
         authorization:localStorage.getItem('Student_Token')
       }
-    }).then((res)=>res.json()).then((data)=>{
+    }).then((res)=>{
+      if(!res.ok){
+        navigate("/studentLogin", { replace: true })
+      }
+      return res.json()}).then((data)=>{
       setAllowed(data.allowedToEdit);
     },[])
   })
+  let location = useLocation().pathname;
+  console.log(location)
   return (
     <>
       <div className="w-10/12 h-[51px] bg-black_punch mx-auto mt-2 rounded-lg flex  justify-between items-center font-montserrat sticky top-[120px]">
@@ -19,7 +29,7 @@ const StudentNavbar = ({ isActive, handleIsActive }) => {
           <Link
             to={"/student/ranking"}
             className={`p-2 rounded-md ml-1.5 w-[120px] hover:bg-primary text-center cursor-pointer ${
-              isActive === "Dashboard" ? "bg-primary" : "bg-transparent"
+              location === "/student/ranking" ? "bg-primary" : "bg-transparent"
             }`}
             onClick={() => handleIsActive("Dashboard")}
           >
@@ -28,7 +38,7 @@ const StudentNavbar = ({ isActive, handleIsActive }) => {
           <Link
             to={"/student/studentInfo"}
             className={`p-2 rounded-md ml-1.5 w-[120px] hover:bg-primary text-center cursor-pointer ${
-              isActive === "StudentInfo" ? "bg-primary" : "bg-transparent"
+              location === "/student/studentInfo" ? "bg-primary" : "bg-transparent"
             }`}
             onClick={() => {
               handleIsActive("StudentInfo");
@@ -39,7 +49,7 @@ const StudentNavbar = ({ isActive, handleIsActive }) => {
           {allowed&&<Link
             to={"/student/studentInput"}
             className={`p-2 rounded-md ml-1.5 w-[120px] hover:bg-primary text-center cursor-pointer ${
-              isActive === "StudentInput" ? "bg-primary" : "bg-transparent"
+              location === "/student/studentInput" ? "bg-primary" : "bg-transparent"
             }`}
             onClick={() => {
               handleIsActive("StudentInput");
@@ -48,10 +58,8 @@ const StudentNavbar = ({ isActive, handleIsActive }) => {
             Update Info
           </Link>}
         </div>
-        <div className="flex justify-center items-center text-white">
-          <a className="mr-2 p-[3.5px] outline outline-2 outline-primary rounded-md hover:bg-primary hover:cursor-pointer">
-            <img src={account} width={30} height={30} />
-          </a>
+        <div className="flex justify-center items-center h-[40px] text-white">
+          <StudentAccountMenu />
         </div>
       </div>
     </>

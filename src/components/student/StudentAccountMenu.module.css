@@ -1,0 +1,41 @@
+.accountBtn {
+}
+.dropDown_menu {
+  margin-top: 10px;
+  position: absolute;
+  right: 8px;
+  padding: 4px 0px;
+  text-align: center;
+  border: 2px solid #4d4d4d;
+}
+.dropDown_menu.aactive {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: 1 ease;
+}
+.dropDown_menu.inaactive {
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(-50px);
+  transition: 1 ease;
+}
+.menu_link {
+  padding: 0px 20px;
+  width: 100%;
+}
+
+.dropDown_menu::before {
+  content: "";
+  border-top: 2px solid #4d4d4d;
+  border-left: 2px solid #4d4d4d;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  top: -9px;
+  right: 11px;
+  height: 15px;
+  width: 15px;
+  background-color: #333333;
+  transform: rotate(45deg);
+}

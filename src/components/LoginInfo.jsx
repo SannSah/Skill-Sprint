@@ -8,10 +8,14 @@ const LoginInfo = () => {
   const adminId = useRef("");
   const adminPassword = useRef("");
   const navigate = useNavigate();
+  // const token = localStorage.getItem("token");
+  // useEffect(() => {
+  //   (token !== null || token !== "") && navigate("/admin/ranking", { replace: true })
+  // }, []);
 
   useEffect(() => {
     if (isValid) {
-      navigate("/admin/Ranking/", { replace: true });
+      navigate("/admin/ranking", { replace: true });
     }
   }, [isValid, navigate]);
 

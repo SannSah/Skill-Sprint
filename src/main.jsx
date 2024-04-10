@@ -15,6 +15,8 @@ import Ranking from "./components/admin/dashboard/Ranking.jsx";
 import StudentRanking from "./components/student/StudentRanking.jsx";
 import CompleteStudentInfoProvider from "./store/complete-student-info.jsx";
 import StudentInputInfoProvider from "./store/student-store/student-input.jsx";
+import AdminChangePassword from "./components/admin/AdminChangePassword.jsx";
+import StudentChangePassword from "./components/student/StudentChangePassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,14 +25,20 @@ const router = createBrowserRouter([
     children: [
       { path: "/adminLogin", element: <AdminLogin /> },
       { path: "/studentLogin", element: <StudentLogin /> },
-      {path:"/admin/student/completeInfo/:id",element:<CompleteStudentInfoProvider><CompleteStudentInfo/></CompleteStudentInfoProvider>},
+      {
+        path: "/admin/student/completeInfo/:id",
+        element: (
+          <CompleteStudentInfoProvider>
+            <CompleteStudentInfo />
+          </CompleteStudentInfoProvider>
+        ),
+      },
       {
         path: "/admin",
         element: <Dashboard />,
         children: [
           { path: "/admin/ranking", element: <Ranking /> },
           { path: "/admin/student", element: <Student /> },
-          
         ],
       },
       {
@@ -39,9 +47,18 @@ const router = createBrowserRouter([
         children: [
           { path: "/student/ranking", element: <StudentRanking /> },
           { path: "/student/studentInfo", element: <StudentInfo /> },
-          { path: "/student/studentInput", element: <StudentInputInfoProvider><StudentInput /></StudentInputInfoProvider> },
+          {
+            path: "/student/studentInput",
+            element: (
+              <StudentInputInfoProvider>
+                <StudentInput />
+              </StudentInputInfoProvider>
+            ),
+          },
         ],
       },
+      { path: "/changeAdminPassword", element: <AdminChangePassword /> },
+      { path: "/changeStudentPassword", element: <StudentChangePassword  /> },
 
       // { path: "/admin/studentInfo", element: <CompleteStudentInfo /> },
     ],

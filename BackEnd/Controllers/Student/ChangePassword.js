@@ -1,14 +1,13 @@
-import Admin from "../../Models/AdminModel.js";
+import User from "../../Models/UserModel.js";
 
 function ChangePassword(req,res){
-  const adminId=req.user.adminId;
-  
+  const rollNo=req.rollNo;
   const oldPassword=req.body.oldPassword;
-  const newPassword=req.body.newPassword;
-  console.log(adminId);
   console.log(oldPassword);
+  const newPassword=req.body.newPassword;
   console.log(newPassword);
-  Admin.findOneAndUpdate({_id:adminId,password:oldPassword},{$set:{password:newPassword}},{new:true}).then((updatedDocument)=>{
+  User.findOneAndUpdate({username:rollNo,password:oldPassword},{$set:{password:newPassword}},{new:true}).then((updatedDocument)=>{
+    console.log(updatedDocument);
     if(updatedDocument){
       res.json({passwordChanged:true});
     }else{

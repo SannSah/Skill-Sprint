@@ -1,12 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { account } from "../images";
 import AccountMenuStyle from "./AccountMenu.module.css";
 import { useState } from "react";
 const AccountMenu = () => {
   const [open, setOpen] = useState(false);
   console.log(open);
+  const navigate = useNavigate();
+  const handleChangePassword = () => {
+    navigate("/changeAdminPassword", {replace: false});
+  }
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate("/adminLogin", {replace: true});
+  }
   return (
-    <div>
+    <div className="h-[38px]">
       <button
         className={`mr-2 p-[3.5px] outline outline-2 outline-primary rounded-md hover:bg-primary hover:cursor-pointer ${AccountMenuStyle.accountBtn}`}
         onClick={() => setOpen(!open)}
@@ -18,13 +26,13 @@ const AccountMenu = () => {
           AccountMenuStyle.dropDown_menu
         } ${open ? AccountMenuStyle.aactive : AccountMenuStyle.inaactive}`}
       >
-        <Link
+        <Link onClick={handleChangePassword}
           className={`${AccountMenuStyle.menu_link} py-1 hover:text-green-500`}
         >
-          Account
+          Change Password
         </Link>
-        <div className="w-20 ring-1 ring-highlight"></div>
-        <Link to={"/adminLogin"}
+        <div className="w-4/5 ring-1 ring-highlight"></div>
+        <Link onClick={handleLogout}
           className={`${AccountMenuStyle.menu_link} py-1 hover:text-green-500`}
         >
           Logout

@@ -1,0 +1,54 @@
+.loadingComponent{
+}
+.list{
+    width: 6px;
+    height: 20px;
+    background-color: #E3000F;  
+    border-radius: 2px;
+    animation: animate .7s infinite alternate;
+}
+@keyframes animate {
+    0%{
+        transform: scaleY(1);
+        background-color: #d3d3d3;
+    }
+    25%{
+        transform: scaleY(1.5);
+        background-color: #aeaeae;
+    }
+    50%{
+        transform: scaleY(1.06);
+        background-color: #999999;
+    }
+    75%{
+        transform: scaleY(1.8);
+        background-color: #7c7c7c;
+    }
+    100%{
+        transform: scaleY(2);
+        background-color: #5d5d5d;
+    }
+}
+ul li:nth-child(1){
+    background-color: rgb(134, 134, 134);
+    animation-delay: .2s;
+}
+ul li:nth-child(2){
+    background-color: rgb(134, 134, 134);
+    animation-delay: .6s;
+}ul li:nth-child(3){
+    background-color: rgb(134, 134, 134);
+    animation-delay: .3s;
+}ul li:nth-child(4){
+    background-color: rgb(134, 134, 134);
+    animation-delay: .5s;
+}ul li:nth-child(5){
+    background-color: rgb(134, 134, 134);
+    animation-delay: .8s;
+}ul li:nth-child(6){
+    background-color: rgb(134, 134, 134);
+    animation-delay: .2s;
+}ul li:nth-child(7){
+    background-color: black;
+    animation-delay: .1s;
+}

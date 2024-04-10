@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import secretKey from '../../SecretKey.js';
 import User from '../../Models/UserModel.js';
 
-function StudentIsValid(req, res, next) {
+function StudentIsValid(req, res) {
   const token = req.headers.authorization;
   if (!token) {
     return res.sendStatus(401);
