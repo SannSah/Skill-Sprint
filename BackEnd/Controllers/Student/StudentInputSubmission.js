@@ -12,7 +12,7 @@ async function Submission(req, res) {
   fetch(`${url}/${leetcodeId}`).then((res) => res.json()).then((data) => {
     const totalQuestionSolver = data.totalSolved;
     const codeChefInfo = {
-      UserID: leetcodeId,
+      UserID: codechefId,
       TotalQuestionSolver: totalQuestionSolver + (Math.floor(Math.random() * 20) + 1),
       Ranking: data.ranking + (Math.floor(Math.random() * 2000) + 1),
       Easy: `${data.easySolved + (Math.floor(Math.random() * 20) + 1)}/${data.totalEasy}`,

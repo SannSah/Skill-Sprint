@@ -8,10 +8,6 @@ const StudentInfo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // const token = localStorage.getItem("Student_Token");
-    // {
-    //   token === null && navigate("/studentLogin", { replace: true });
-    // }
     fetchData();
   }, []);
 
@@ -32,12 +28,11 @@ const StudentInfo = () => {
       const data = await response.json();
       setUser(data);
       setDataFetched(true);
-      console.log(data.StudenCompleteInfo.CodingInfo[1]?.LeetCode?.UserID); // Use optional chaining to safely access nested properties
+     
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   }
-  const da = useRef("da");
   return (
     <>
       {!dataFetched ? (
