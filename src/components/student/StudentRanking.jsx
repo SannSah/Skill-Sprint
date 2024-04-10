@@ -18,6 +18,9 @@ const StudentRanking = () => {
       },
     })
       .then((res) => {
+        if(!res.ok){
+          navigate("/studentLogin", { replace: true })
+        }
         return res.json();
       })
       .then((data) => {

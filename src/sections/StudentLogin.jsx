@@ -10,9 +10,9 @@ const StudentLogin = () => {
   let [isValidError, setValidError] = useState(true);
   const navigate = useNavigate();
   const token = localStorage.getItem("Student_Token");
-  useEffect(() => {
-    token !== null && navigate("/student/ranking");
-  })
+  // useEffect(() => {
+  //   token !== null && navigate("/student/ranking");
+  // })
 
   useEffect(() => {
     if (validateUser) {

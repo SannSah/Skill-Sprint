@@ -35,14 +35,27 @@ const codingInfoSchema = new mongoose.Schema({
     }
 });
 
-const currentCourseSchema = new mongoose.Schema({
-    institute: String,
-    department: String,
-    program: String,
-    branch: String,
-    cgpa: Number,
-    session: String,
-    semester: Number
+const academicInfoSchema = new mongoose.Schema({
+    CurrentCourse: {
+        Institute: String,
+        Department: String,
+        Program: String,
+        Specialization: String,
+        CGPA: Number,
+        CurrentSemester: Number
+    },
+    twelfth: {
+        Board: String,
+        Stream: String,
+        Percentage: Number,
+        PassingYear: Number
+    },
+    tenth: {
+        Board: String,
+        Stream: String,
+        Percentage: Number,
+        PassingYear: Number
+    }
 });
 
 const personalInfoSchema = new mongoose.Schema({
@@ -53,13 +66,15 @@ const personalInfoSchema = new mongoose.Schema({
     DOB: String,
     ContactNumber: String,
     Email: String,
-    session:String
+    session: String,
+    EditInfo:String
 });
+
 
 const studentSchema = new mongoose.Schema({
     personalInfo: personalInfoSchema,
     CodingInfo: [codingInfoSchema],
-    academicinfo: [currentCourseSchema]
+    academicinfo: [academicInfoSchema]
 });
 
 const Student = mongoose.model('students', studentSchema);

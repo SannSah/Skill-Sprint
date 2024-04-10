@@ -7,11 +7,11 @@ const StudentAccountMenu = () => {
   console.log(open);
   const navigate = useNavigate();
   const handleChangePassword = () => {
-    navigate("/changeStudentPassword", {replace: true});
+    navigate("/changeStudentPassword", { replace: true });
   }
   const handleLogout = () => {
     localStorage.removeItem('Student_Token');
-    navigate("/studentLogin", {replace: true});
+    navigate("/studentLogin", { replace: true });
   }
   return (
     <div className="h-[38px]">
@@ -22,9 +22,8 @@ const StudentAccountMenu = () => {
         <img src={account} width={30} height={30} />
       </button>
       <div
-        className={`bg-primary rounded-lg shadow-neo flex flex-col items-center ${
-          StudentAccountMenuStyles.dropDown_menu
-        } ${open ? StudentAccountMenuStyles.aactive : StudentAccountMenuStyles.inaactive}`}
+        className={`bg-primary rounded-lg shadow-neo flex flex-col items-center ${StudentAccountMenuStyles.dropDown_menu
+          } ${open ? StudentAccountMenuStyles.aactive : StudentAccountMenuStyles.inaactive}`}
       >
         <Link onClick={handleChangePassword}
           className={`${StudentAccountMenuStyles.menu_link} py-1 hover:text-green-500`}

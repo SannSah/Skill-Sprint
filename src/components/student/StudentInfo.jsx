@@ -8,10 +8,10 @@ const StudentInfo = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("Student_Token");
-    {
-      token === null && navigate("/studentLogin", { replace: true });
-    }
+    // const token = localStorage.getItem("Student_Token");
+    // {
+    //   token === null && navigate("/studentLogin", { replace: true });
+    // }
     fetchData();
   }, []);
 
@@ -27,7 +27,7 @@ const StudentInfo = () => {
         }
       );
       if (!response.ok) {
-        throw new Error("Failed to fetch data");
+       navigate("/studentLogin", { replace: true })
       }
       const data = await response.json();
       setUser(data);

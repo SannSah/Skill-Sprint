@@ -5,7 +5,6 @@ async function AdminStudents(req, res) {
   const totalStudents = [];
   try {
     await Student.find({ "personalInfo.session": session_name }).exec().then((result) => {
-      console.log(result);
       result.map((student) => { totalStudents.push(student.personalInfo) })
       res.json({ totalStudents: totalStudents });
     });

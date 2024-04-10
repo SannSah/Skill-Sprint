@@ -1,7 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
 import { account } from "../../images";
+import { useEffect, useState } from "react";
 import StudentAccountMenu from "./StudentAccountMenu";
+
+  
+
 const StudentNavbar = ({ handleIsActive }) => {
+  const [allowed,setAllowed]=useState(false);
+  useEffect(()=>{
+    fetch("http://localhost:8000/student/Edit",{
+      headers:{
+        authorization:localStorage.getItem('Student_Token')
+      }
+    }).then((res)=>{
+      if(!res.ok){
+        navigate("/studentLogin", { replace: true })
+      }
+      return res.json()}).then((data)=>{
+      setAllowed(data.allowedToEdit);
+    },[])
+  })
   let location = useLocation().pathname;
   console.log(location)
   return (
@@ -28,7 +46,7 @@ const StudentNavbar = ({ handleIsActive }) => {
           >
             View Info
           </Link>
-          <Link
+          {allowed&&<Link
             to={"/student/studentInput"}
             className={`p-2 rounded-md ml-1.5 w-[120px] hover:bg-primary text-center cursor-pointer ${
               location === "/student/studentInput" ? "bg-primary" : "bg-transparent"
@@ -38,7 +56,7 @@ const StudentNavbar = ({ handleIsActive }) => {
             }}
           >
             Update Info
-          </Link>
+          </Link>}
         </div>
         <div className="flex justify-center items-center h-[40px] text-white">
           <StudentAccountMenu />
