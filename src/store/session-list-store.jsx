@@ -27,6 +27,7 @@ const SessionListProvider = ({ children }) => {
         return res.json();
       })
       .then((data) => {
+        console.log(data.totalSession);
         addAllSessions(data.totalSession);
       });
   }, []);

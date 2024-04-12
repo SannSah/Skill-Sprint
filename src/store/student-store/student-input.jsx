@@ -38,8 +38,10 @@ export const StudentInputInfo = createContext({
 
   handleStudentResetData: () => { },
   handleStudentSubmitData: () => { },
+  setImage:()=>{}
 });
 const StudentInputInfoProvider = ({ children }) => {
+  const [image,setImage]=useState({});
   const navigate=useNavigate();
   const fullName = useRef("");
   const rollNo = useRef("");
@@ -106,7 +108,8 @@ const StudentInputInfoProvider = ({ children }) => {
   };
   const handleStudentSubmitData = (event) => {
     event.preventDefault();
-    const studentInfo = {
+    const formData=new FormData();
+    const studentInfoString = JSON.stringify({
       personalInfo: {
         fullName: fullName.current.value,
         RollNo: rollNo.current.value,
@@ -118,7 +121,6 @@ const StudentInputInfoProvider = ({ children }) => {
         ContactNumber: phoneNumber.current.value,
         EditInfo: "Not Allowed"
       },
-      // Extracting values from useRef objects
       CodingId: [codeChefId.current.value, leetcodeId.current.value, gfgId.current.value, hackerRankId.current.value],
       CurrentCourse: {
         Institute: institude.current.value,
@@ -140,20 +142,23 @@ const StudentInputInfoProvider = ({ children }) => {
         Percentage: xPercentage.current.value,
         PassingYear: xPassingYear.current.value
       }
-    };
-
-    // Fetching data and handling responses
+    });
+  
+    formData.append("student", studentInfoString);
+    if(image!==null){
+      console.log("appended");
+    formData.append("image",image);
+    }
+    
     fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeId.current.value}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.status);
         if (data.status === 'success') {
-          axios.post("http://localhost:8000/student/Add", {
-            student: studentInfo
-          }, {
+          axios.post("http://localhost:8000/student/Add",formData,{
             headers: {
               'Authorization': localStorage.getItem("Student_Token"),
-              'Content-Type': 'application/json'
+              'Content-Type': 'multipart/form-data'
             }
           })
             .then((response) =>{
@@ -205,6 +210,7 @@ const StudentInputInfoProvider = ({ children }) => {
 
         handleStudentResetData,
         handleStudentSubmitData,
+        setImage
       }}
     >
       {children}
