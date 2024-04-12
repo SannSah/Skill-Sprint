@@ -67,7 +67,8 @@ const personalInfoSchema = new mongoose.Schema({
     ContactNumber: String,
     Email: String,
     session: String,
-    EditInfo:String
+    EditInfo:String,
+    image:String
 });
 
 

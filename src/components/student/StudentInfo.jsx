@@ -4,6 +4,7 @@ import Loading from "../Loading";
 
 const StudentInfo = () => {
   const [user, setUser] = useState({});
+  const [url,setUrl]=useState();
   const [dataFetched, setDataFetched] = useState(false);
   const navigate = useNavigate();
 
@@ -27,6 +28,9 @@ const StudentInfo = () => {
       }
       const data = await response.json();
       setUser(data);
+      
+      setUrl(data.StudenCompleteInfo.personalInfo.image);
+      
       setDataFetched(true);
      
     } catch (error) {
@@ -35,12 +39,15 @@ const StudentInfo = () => {
   }
   return (
     <>
+    
       {!dataFetched ? (
         <div className="w-[80%] h-[110%] mx-auto">
           <Loading />
         </div>
       ) : (
+        
         <div className="w-[80%] bg-primary shadow-neo rounded-lg p-3 mt-6 mx-auto">
+        <img src={url} alt="Student Image" />
           <p className="text-white text-3xl font-medium mx-auto block text-center">
             Student Information
           </p>
