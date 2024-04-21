@@ -11,8 +11,12 @@ const PersonalInfoInput = (props) => {
     collegeMailId,
     mentor,
     session,
+    setImage,
   } = useContext(StudentInputInfo);
   console.log(gender);
+  function handleOnImageChange(event){
+    setImage(event.target.files[0]);
+  }
   return (
     <div className="mx-20 my-14 text-white font-montserrat">
       <p className="text-lg font-medium">Personal Info</p>
@@ -41,10 +45,10 @@ const PersonalInfoInput = (props) => {
           />
           <div className={`${StudentInputStyle.label_input}`}>Roll Number</div>
         </div>
-        {/* Image Input */}
-        {/* <div className="row-span-3 ring-1 ">
-          <input type="file" accept="image/jpeg, image/jpg" />
-        </div> */}
+
+        <div className="row-span-3 ring-1 ">
+          <input onChange={handleOnImageChange} type="file" accept="image/jpeg, image/jpg" />
+        </div>
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
         >

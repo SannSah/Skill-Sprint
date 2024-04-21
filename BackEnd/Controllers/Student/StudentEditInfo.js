@@ -4,7 +4,6 @@ async function StudentEditInfo(req, res) {
   const rollNo = req.rollNo;
   const student = await Student.findOne({ 'personalInfo.RollNo':rollNo });
   if (!student) {
-    console.log(student);
     res.json({ allowedToEdit: true });
   } else {
    const student2=await Student.findOne({ 'personalInfo.RollNo':rollNo, 'personalInfo.EditInfo':"Allowed"});
