@@ -41,9 +41,10 @@ const PersonalInfoInput = (props) => {
           />
           <div className={`${StudentInputStyle.label_input}`}>Roll Number</div>
         </div>
-        <div className="row-span-3 ring-1 ">
+        {/* Image Input */}
+        {/* <div className="row-span-3 ring-1 ">
           <input type="file" accept="image/jpeg, image/jpg" />
-        </div>
+        </div> */}
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
         >

@@ -14,7 +14,7 @@ const StudentDashboard = () => {
   }, []);
 
   return (
-    <div className="h-[65vh]">
+    <div className="w-full h-[65vh]">
       <div className="bg-primary sticky top-0 z-10 pb-4">
         <Header />
         <StudentNavbar handleIsActive={handleIsActive} />

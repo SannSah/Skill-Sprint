@@ -44,9 +44,9 @@ const StudentInfo = () => {
           <p className="text-white text-3xl font-medium mx-auto block text-center">
             Student Information
           </p>
-          <div className="mx-20 my-4 text-white font-montserrat">
+          <div className="mx-20 my-4 text-white font-montserrat max-lg:mx-10">
             <p className="text-lg font-medium">Personal Information:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4 max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   Name:
@@ -112,7 +112,7 @@ const StudentInfo = () => {
           <div className="mx-20 my-4 text-white font-montserrat">
             <p className="text-lg font-medium">Coding Information:</p>
             <p className="pl-6 pt-2">Leetcode:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4  max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   User Id:
@@ -169,7 +169,7 @@ const StudentInfo = () => {
               </div>
             </div>
             <p className="pl-6 pt-2">HackerRank:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4  max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   User Id:
@@ -226,7 +226,7 @@ const StudentInfo = () => {
               </div>
             </div>
             <p className="pl-6 pt-2">CodeChef:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4  max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   User Id:
@@ -283,13 +283,13 @@ const StudentInfo = () => {
               </div>
             </div>
             <p className="pl-6 pt-2">Geeks for Geeks:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4  max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   User Id:
                 </span>
                 <p type="text" className="px-4">
-                  {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.UserID} */}
+                  {user.StudenCompleteInfo.CodingInfo[2].GFG.UserID}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -297,7 +297,7 @@ const StudentInfo = () => {
                   Total Questions Solved:
                 </span>
                 <p type="text" className="px-4">
-                  {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.TotalQuestionSolver} */}
+                {user.StudenCompleteInfo.CodingInfo[2].GFG.TotalQuestionSolver}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -305,7 +305,7 @@ const StudentInfo = () => {
                   Ranking:
                 </span>
                 <p type="text" className="px-4">
-                  {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Ranking} */}
+                {user.StudenCompleteInfo.CodingInfo[2].GFG.Ranking}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -313,7 +313,7 @@ const StudentInfo = () => {
                   Easy:
                 </span>
                 <p type="text" className="px-4">
-                  {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Easy} */}
+                {user.StudenCompleteInfo.CodingInfo[2].GFG.Easy}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -321,7 +321,7 @@ const StudentInfo = () => {
                   Medium:
                 </span>
                 <p type="text" className="px-4">
-                  {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Medium} */}
+                {user.StudenCompleteInfo.CodingInfo[2].GFG.Medium}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -329,7 +329,7 @@ const StudentInfo = () => {
                   Hard:
                 </span>
                 <p type="text" className="px-4">
-                  {/* {user.StudenCompleteInfo.CodingInfo[2].LeetCode.Hard} */}
+                {user.StudenCompleteInfo.CodingInfo[2].GFG.Hard}
                 </p>
               </div>
             </div>
@@ -338,13 +338,13 @@ const StudentInfo = () => {
           <div className="mx-20 my-4 text-white font-montserrat">
             <p className="text-lg font-medium">Academics Information:</p>
             <p className="pl-6 pt-2">Current Most Recent Course:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4 max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   Institude:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                  {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Institute}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -352,7 +352,7 @@ const StudentInfo = () => {
                   Department:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Department}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -360,7 +360,7 @@ const StudentInfo = () => {
                   Program:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Program}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -368,7 +368,7 @@ const StudentInfo = () => {
                   Specializtion
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Specialization}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -376,7 +376,7 @@ const StudentInfo = () => {
                   CGPA
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.CGPA}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -384,18 +384,18 @@ const StudentInfo = () => {
                   Current Semester
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.CurrentSemester}
                 </p>
               </div>
             </div>
             <p className="pl-6 pt-2">12th Course:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4  max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   Board:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[1].twelfth.Board}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -403,7 +403,7 @@ const StudentInfo = () => {
                   Stream:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[1].twelfth.Stream}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -411,7 +411,7 @@ const StudentInfo = () => {
                   Percentage:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[1].twelfth.Percentage}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -419,18 +419,18 @@ const StudentInfo = () => {
                   Year:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[1].twelfth.PassingYear}
                 </p>
               </div>
             </div>
             <p className="pl-6 pt-2">10th Course:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4">
+            <div className="mx-8 my-4 grid grid-cols-3 gap-4  max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   Board:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                  {user.StudenCompleteInfo.academicinfo[2].tenth.Board}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -438,7 +438,7 @@ const StudentInfo = () => {
                   Stream:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[2].tenth.Stream}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -446,7 +446,7 @@ const StudentInfo = () => {
                   Percentage:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[2].tenth.Percentage}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -454,7 +454,7 @@ const StudentInfo = () => {
                   Year:
                 </span>
                 <p type="text" className="px-4">
-                  CBSE
+                {user.StudenCompleteInfo.academicinfo[2].tenth.PassingYear}
                 </p>
               </div>
             </div>

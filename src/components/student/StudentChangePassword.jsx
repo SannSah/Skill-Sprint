@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cuLogo } from "../../images";
 import { useNavigate } from 'react-router-dom';
+import ChangePasswordPopUp from "../popup/ChangePasswordPopUp";
 const StudentChangePassword = () => {
   const navigate=useNavigate();
   // const [isPasswordChanged,setPasswordChanged]=useState(false);
@@ -8,6 +9,7 @@ const StudentChangePassword = () => {
   const oldPass = useRef("");
   const newPass = useRef("");
   const confirmNewPass = useRef("");
+  const [buttonPopup, setButtonPopup] = useState(false);
   useEffect(() => {
     fetch("http://localhost:8000/student/validUser", {
       headers: {
@@ -21,7 +23,10 @@ const StudentChangePassword = () => {
   }, [])
   const handleChangePassword = (event) => {
     event.preventDefault();
-    fetch("http://localhost:8000/student/changepassword", {
+    if((newPass.current.value === "") || (confirmNewPass.current.value === "") || (newPass.current.value !== confirmNewPass.current.value)){
+      setButtonPopup(true);
+    }
+    else{fetch("http://localhost:8000/student/changepassword", {
       method: "POST",
       headers:{
         "Content-Type": "application/json",
@@ -48,7 +53,7 @@ const StudentChangePassword = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-      });
+      });}
   };
   
   return (
@@ -95,6 +100,7 @@ const StudentChangePassword = () => {
           </div>
         </form>
       </div>
+      {buttonPopup && <ChangePasswordPopUp setButtonPopup={setButtonPopup} />}
     </div>
   );
 };

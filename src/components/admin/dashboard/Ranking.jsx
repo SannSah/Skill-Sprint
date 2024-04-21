@@ -17,7 +17,7 @@ const Ranking = () => {
     const token = localStorage.getItem("token");
     console.log(token)
     setDataFetched(false);
-    fetch("http://localhost:8000/admin/dashboard/Ranking", {
+    if(selectedSession != ""){fetch("http://localhost:8000/admin/dashboard/Ranking", {
       method: "GET",
       headers: {
         authorization: token,
@@ -34,7 +34,7 @@ const Ranking = () => {
         setStudent(data.topTenStudents);
         setDataFetched(true);
       });
-  }, [selectedSession]);
+  }}, [selectedSession]);
   const topThreeStudents = () => {
     const [first, second, third] =
       students.length > 0

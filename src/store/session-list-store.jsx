@@ -7,10 +7,11 @@ export const SessionList = createContext({
 });
 
 const SessionListProvider = ({ children }) => {
-  let [selectedSession, setSelectedSession] = useState("2022-2025 BCA");
+  let [selectedSession, setSelectedSession] = useState("");
   let [sessionList, setSessionList] = useState([]);
   const addAllSessions = (data) => {
     setSessionList([...data]);
+    setSelectedSession(data[0].SessionName)
   };
   const handleSelectedSession = (e) => {
     setSelectedSession(e);

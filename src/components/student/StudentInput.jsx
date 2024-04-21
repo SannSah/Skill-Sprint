@@ -4,9 +4,11 @@ import CodingInfoInput from "./input/CodingInfoInput";
 import AcademicsInfoInput from "./input/AcademicsInfoInput";
 import { StudentInputInfo } from "../../store/student-store/student-input";
 import { useNavigate } from "react-router-dom";
+import ChangePasswordPopUp from "../popup/ChangePasswordPopUp"
+import Loading from "../Loading";
 
 const StudentInput = () => {
-  const { handleStudentResetData, handleStudentSubmitData } = useContext(StudentInputInfo);
+  const { isLoading, isCorrectLeetcodeId, handleStudentResetData, handleStudentSubmitData } = useContext(StudentInputInfo);
   const [user,setUser]=useState({});
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,7 +31,7 @@ const StudentInput = () => {
   }, [])
   return (
     <>
-      <form
+      {!isLoading && <form
         className="w-[80%] bg-primary shadow-neo rounded-lg input-3 mt-6 pb-2 mx-auto"
         onSubmit={(event) => handleStudentSubmitData(event)}
       >
@@ -58,7 +60,8 @@ const StudentInput = () => {
             Submit
           </button>
         </div>
-      </form>
+      </form>}
+      {isLoading && <Loading />}
     </>
   );
 };

@@ -10,6 +10,7 @@ import rank1 from "./rank1.png";
 import rank2 from "./rank2.png";
 import rank3 from "./rank3.png";
 import loadingLogo from "./Subtract.svg";
+import profilePlaceholder from "./profilePlaceholder.jpg";
 
 export {
   cuLogo,
@@ -24,4 +25,5 @@ export {
   rank2,
   rank3,
   loadingLogo,
+  profilePlaceholder
 };

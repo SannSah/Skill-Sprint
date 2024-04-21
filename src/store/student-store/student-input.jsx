@@ -36,6 +36,9 @@ export const StudentInputInfo = createContext({
   xPercentage: "",
   xPassingYear: "",
 
+  isLoading: false,
+  isCorrectLeetcodeId: true,
+
   handleStudentResetData: () => { },
   handleStudentSubmitData: () => { },
 });
@@ -71,6 +74,9 @@ const StudentInputInfoProvider = ({ children }) => {
   const xStream = useRef("");
   const xPercentage = useRef("");
   const xPassingYear = useRef("");
+
+  const [isCorrectLeetcodeId, setIsCorrectLeetcodeId] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleStudentResetData = () => {
     fullName.current.value = "";
@@ -143,6 +149,7 @@ const StudentInputInfoProvider = ({ children }) => {
     };
 
     // Fetching data and handling responses
+    setIsLoading(true);
     fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeId.current.value}`)
       .then((res) => res.json())
       .then((data) => {
@@ -165,6 +172,10 @@ const StudentInputInfoProvider = ({ children }) => {
             .catch((error) => {
               console.error('Error:', error);
             });
+        }
+        else{
+          setIsCorrectLeetcodeId(false);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
@@ -202,6 +213,9 @@ const StudentInputInfoProvider = ({ children }) => {
         xStream,
         xPercentage,
         xPassingYear,
+
+        isLoading,
+        isCorrectLeetcodeId,
 
         handleStudentResetData,
         handleStudentSubmitData,

@@ -40,19 +40,19 @@ const StudentRanking = () => {
         : [{ fullName: "" }, { fullName: "" }, { fullName: "" }];
 
     return (
-      <div className="h- 6 flex justify-evenly">
-        <span className="text-base">
-          <img src={rank2} className="w-48 h-48" />
+      <div className="h- 6 flex justify-evenly max-md:flex-col max-md:align-center max-md:gap-4">
+        <div className="text-base max-md:flex-col">
+          <div className="flex justify-center"><img src={rank2} className="w-48 h-48" /></div>
           <p>{second.fullName}</p>
-        </span>
-        <span className="text-base">
-          <img src={rank1} className="w-64 h-64" />
+        </div>
+        <div className="text-base">
+        <div className="flex justify-center"><img src={rank1} className="w-64 h-64" /></div>
           <p>{first.fullName}</p>
-        </span>
-        <span className="text-base">
-          <img src={rank3} className="w-48 h-48" />
+        </div>
+        <div className="text-base">
+        <div className="flex justify-center"><img src={rank3} className="w-48 h-48" /></div>
           <p>{third.fullName}</p>
-        </span>
+        </div>
       </div>
     );
   };
@@ -60,11 +60,11 @@ const StudentRanking = () => {
   return (
     <div className="w-full h-[110%]">
       {!dataFetched ? (
-        <div className="w-[800px] h-full mx-auto">
+        <div className="w-[800px] h-full mx-auto max-md:w-[90%]">
           <Loading />
         </div>
       ) : (
-        <div className="w-[800px] border-2 rounded-lg border-highlight mx-auto text-center font-montserrat text-2xl text-white">
+        <div className="w-[800px] border-2 rounded-lg border-highlight mx-auto text-center font-montserrat text-2xl text-white max-md:w-[85%]">
           <p className="text-3xl py-6 font-semibold">
             Top 10 Student's in your Session
           </p>

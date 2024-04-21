@@ -51,13 +51,13 @@ const StudentOptions = ({ studentId, studentRoll }) => {
       </Link>
       <a
         onClick={onUpdate}
-        className="w-full py-2 bg-cyan-500 rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-cyan-500 text-center"
+        className="w-full py-2 bg-cyan-500 rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-cyan-500 text-center cursor-pointer"
       >
         Update
       </a>
-      <a className="w-full py-2 bg-base_red rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-base_red text-center">
+      {/* <a className="w-full py-2 bg-base_red rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-base_red text-center">
         Delete
-      </a>
+      </a> */}
     </div>
   );
 };

@@ -57,7 +57,7 @@ async function Submission(req, res) {
       
     }
     Student.find({'personalInfo.RollNo':student.personalInfo.RollNo}).then((result)=>{
-      if(!result){
+      if(result.length === 0){
         console.log("Heloo");
       const studentInserted = new Student(student)
       studentInserted.save().then((data) => {
