@@ -4,7 +4,7 @@ import Loading from "../Loading";
 
 const StudentInfo = () => {
   const [user, setUser] = useState({});
-  const [url,setUrl]=useState();
+  const [url, setUrl] = useState();
   const [dataFetched, setDataFetched] = useState(false);
   const navigate = useNavigate();
 
@@ -24,36 +24,34 @@ const StudentInfo = () => {
         }
       );
       if (!response.ok) {
-       navigate("/studentLogin", { replace: true })
+        navigate("/studentLogin", { replace: true });
       }
       const data = await response.json();
       setUser(data);
-      
+
       setUrl(data.StudenCompleteInfo.personalInfo.image);
-      
+
       setDataFetched(true);
-     
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   }
+  console.log(url);
   return (
     <>
-    
       {!dataFetched ? (
         <div className="w-[80%] h-[110%] mx-auto">
           <Loading />
         </div>
       ) : (
-        
         <div className="w-[80%] bg-primary shadow-neo rounded-lg p-3 mt-6 mx-auto">
-        <img src={url} alt="Student Image" />
           <p className="text-white text-3xl font-medium mx-auto block text-center">
             Student Information
           </p>
           <div className="mx-20 my-4 text-white font-montserrat max-lg:mx-10">
             <p className="text-lg font-medium">Personal Information:</p>
-            <div className="mx-8 my-4 grid grid-cols-3 gap-4 max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
+            <div className="flex justify-center max-md:flex-col">
+            <div className="w-[78%] mx-8 my-4 grid grid-cols-3 gap-4 max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   Name:
@@ -72,6 +70,7 @@ const StudentInfo = () => {
                     "N/A"}
                 </p>
               </div>
+
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
                   College Mail Id:
@@ -113,6 +112,15 @@ const StudentInfo = () => {
                   {user?.StudenCompleteInfo?.personalInfo?.session ?? "N/A"}
                 </p>
               </div>
+            </div>
+            <div className="rounded-md overflow-hidden">
+                <img
+                  src={url}
+                  alt="student profile picture"
+                  className="w-[160px] h-[170px] object-cover object-center rounded-md"
+                />
+              </div>
+
             </div>
           </div>
 
@@ -304,7 +312,10 @@ const StudentInfo = () => {
                   Total Questions Solved:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.CodingInfo[2].GFG.TotalQuestionSolver}
+                  {
+                    user.StudenCompleteInfo.CodingInfo[2].GFG
+                      .TotalQuestionSolver
+                  }
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -312,7 +323,7 @@ const StudentInfo = () => {
                   Ranking:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.CodingInfo[2].GFG.Ranking}
+                  {user.StudenCompleteInfo.CodingInfo[2].GFG.Ranking}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -320,7 +331,7 @@ const StudentInfo = () => {
                   Easy:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.CodingInfo[2].GFG.Easy}
+                  {user.StudenCompleteInfo.CodingInfo[2].GFG.Easy}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -328,7 +339,7 @@ const StudentInfo = () => {
                   Medium:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.CodingInfo[2].GFG.Medium}
+                  {user.StudenCompleteInfo.CodingInfo[2].GFG.Medium}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -336,7 +347,7 @@ const StudentInfo = () => {
                   Hard:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.CodingInfo[2].GFG.Hard}
+                  {user.StudenCompleteInfo.CodingInfo[2].GFG.Hard}
                 </p>
               </div>
             </div>
@@ -351,7 +362,10 @@ const StudentInfo = () => {
                   Institude:
                 </span>
                 <p type="text" className="px-4">
-                  {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Institute}
+                  {
+                    user.StudenCompleteInfo.academicinfo[0].CurrentCourse
+                      .Institute
+                  }
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -359,7 +373,10 @@ const StudentInfo = () => {
                   Department:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Department}
+                  {
+                    user.StudenCompleteInfo.academicinfo[0].CurrentCourse
+                      .Department
+                  }
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -367,7 +384,10 @@ const StudentInfo = () => {
                   Program:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Program}
+                  {
+                    user.StudenCompleteInfo.academicinfo[0].CurrentCourse
+                      .Program
+                  }
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -375,7 +395,10 @@ const StudentInfo = () => {
                   Specializtion
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.Specialization}
+                  {
+                    user.StudenCompleteInfo.academicinfo[0].CurrentCourse
+                      .Specialization
+                  }
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -383,7 +406,7 @@ const StudentInfo = () => {
                   CGPA
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.CGPA}
+                  {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.CGPA}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -391,7 +414,10 @@ const StudentInfo = () => {
                   Current Semester
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[0].CurrentCourse.CurrentSemester}
+                  {
+                    user.StudenCompleteInfo.academicinfo[0].CurrentCourse
+                      .CurrentSemester
+                  }
                 </p>
               </div>
             </div>
@@ -402,7 +428,7 @@ const StudentInfo = () => {
                   Board:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[1].twelfth.Board}
+                  {user.StudenCompleteInfo.academicinfo[1].twelfth.Board}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -410,7 +436,7 @@ const StudentInfo = () => {
                   Stream:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[1].twelfth.Stream}
+                  {user.StudenCompleteInfo.academicinfo[1].twelfth.Stream}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -418,7 +444,7 @@ const StudentInfo = () => {
                   Percentage:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[1].twelfth.Percentage}
+                  {user.StudenCompleteInfo.academicinfo[1].twelfth.Percentage}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -426,7 +452,7 @@ const StudentInfo = () => {
                   Year:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[1].twelfth.PassingYear}
+                  {user.StudenCompleteInfo.academicinfo[1].twelfth.PassingYear}
                 </p>
               </div>
             </div>
@@ -445,7 +471,7 @@ const StudentInfo = () => {
                   Stream:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[2].tenth.Stream}
+                  {user.StudenCompleteInfo.academicinfo[2].tenth.Stream}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -453,7 +479,7 @@ const StudentInfo = () => {
                   Percentage:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[2].tenth.Percentage}
+                  {user.StudenCompleteInfo.academicinfo[2].tenth.Percentage}
                 </p>
               </div>
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
@@ -461,7 +487,7 @@ const StudentInfo = () => {
                   Year:
                 </span>
                 <p type="text" className="px-4">
-                {user.StudenCompleteInfo.academicinfo[2].tenth.PassingYear}
+                  {user.StudenCompleteInfo.academicinfo[2].tenth.PassingYear}
                 </p>
               </div>
             </div>

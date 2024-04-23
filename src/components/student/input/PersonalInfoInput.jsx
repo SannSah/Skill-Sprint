@@ -1,6 +1,7 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import StudentInputStyle from "../StudentInput.module.css";
 import { StudentInputInfo } from "../../../store/student-store/student-input";
+import { profilePlaceholder } from "../../../images";
 const PersonalInfoInput = (props) => {
   const {
     fullName,
@@ -11,16 +12,26 @@ const PersonalInfoInput = (props) => {
     collegeMailId,
     mentor,
     session,
+    image,
     setImage,
   } = useContext(StudentInputInfo);
-  console.log(gender);
-  function handleOnImageChange(event){
-    setImage(event.target.files[0]);
+  
+  const [imageName, setImageName] = useState("Choose Profile Picture");
+  const [currImage, setCurrImage] = useState(null);
+  function handleOnImageChange(event) {
+    console.log(URL.createObjectURL(event.target.files[0]));
+
+    if (event.target.files && event.target.files[0]) {
+      setImage(event.target.files[0]);
+      console.log(event.target.files[0]);
+      setCurrImage(URL.createObjectURL(event.target.files[0]));
+      setImageName(event.target.files[0].name);
+    }
   }
   return (
     <div className="mx-20 my-14 text-white font-montserrat">
       <p className="text-lg font-medium">Personal Info</p>
-      <div className="mx-8 my-4 grid grid-cols-3 gap-4 ">
+      <div className="mx-8 my-4 grid grid-cols-4 gap-4 ">
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
         >
@@ -46,9 +57,6 @@ const PersonalInfoInput = (props) => {
           <div className={`${StudentInputStyle.label_input}`}>Roll Number</div>
         </div>
 
-        <div className="row-span-3 ring-1 ">
-          <input onChange={handleOnImageChange} type="file" accept="image/jpeg, image/jpg" />
-        </div>
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
         >
@@ -72,6 +80,21 @@ const PersonalInfoInput = (props) => {
             </select>
           </div>
           <div className={`${StudentInputStyle.label_input}`}></div>
+        </div>
+        <div className="row-span-4 p-2 ring-2 ring-highlight rounded-md flex flex-col gap-2 justify-center items-center cursor-pointer" onClick={() => document.querySelector(".input-image").click()}>
+          <div className="w-[160px] h-[190px]">
+            {currImage == null ? (
+              <img src={profilePlaceholder} alt="" className="object-cover object-center w-full h-full rounded-md" />
+            ) : (
+              <img src={currImage} alt="" className="object-cover object-center w-full h-full rounded-md" />
+            )}
+          </div>
+          <p>{imageName}</p>
+          <input
+            onChange={handleOnImageChange} hidden required
+            type="file"
+            accept="image/jpeg, image/jpg" className="input-image"
+          />
         </div>
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
@@ -108,6 +131,7 @@ const PersonalInfoInput = (props) => {
             Collage Mail Id
           </div>
         </div>
+        
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}
         >

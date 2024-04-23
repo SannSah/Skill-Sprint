@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 const LoginInfo = () => {
   let [isValid, setValid] = useState(false);
@@ -61,12 +61,12 @@ const LoginInfo = () => {
         >
           Sorry, your password was incorrect. Please double-check your password.
         </center>
-        <a
-          href="#"
+        <Link
+          to={"/forgotPassword/" + "Admin"}
           className="text-right text-white text-sm hover:text-base_red font-montserrat"
         >
           Forget Password?
-        </a>
+        </Link>
         <button onClick={loginHandler} type="submit" className="login-button">
           Login
         </button>

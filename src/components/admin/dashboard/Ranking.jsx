@@ -15,7 +15,6 @@ const Ranking = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token)
     setDataFetched(false);
     if(selectedSession != ""){fetch("http://localhost:8000/admin/dashboard/Ranking", {
       method: "GET",
@@ -25,10 +24,12 @@ const Ranking = () => {
       },
     })
       .then((res) => {
+        
         return res.json();
       })
       .then((data) => {
         if (data.inValidToken) {
+          console.log("Hello")
           navigate("/adminLogin", { replace: true });
         }
         setStudent(data.topTenStudents);

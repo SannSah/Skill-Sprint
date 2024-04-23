@@ -13,6 +13,7 @@ export const StudentInputInfo = createContext({
   collegeMailId: "",
   mentor: "",
   session: "",
+  image: "",
 
   leetcodeId: "",
   hackerRankId: "",
@@ -41,7 +42,7 @@ export const StudentInputInfo = createContext({
 
   handleStudentResetData: () => { },
   handleStudentSubmitData: () => { },
-  setImage:()=>{}
+  setImage:""
 });
 const StudentInputInfoProvider = ({ children }) => {
   const [image,setImage]=useState({});
@@ -152,9 +153,9 @@ const StudentInputInfoProvider = ({ children }) => {
     setIsLoading(true);
     formData.append("student", studentInfoString);
     if(image!==null){
-      console.log("appended");
-    formData.append("image",image);
+    console.log("appended");
     }
+    formData.append("image",image);
     fetch(`https://leetcode-stats-api.herokuapp.com/${leetcodeId.current.value}`)
       .then((res) => res.json())
       .then((data) => {
@@ -222,7 +223,8 @@ const StudentInputInfoProvider = ({ children }) => {
 
         handleStudentResetData,
         handleStudentSubmitData,
-        setImage
+        setImage,
+        image
       }}
     >
       {children}

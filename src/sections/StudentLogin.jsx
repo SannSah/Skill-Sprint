@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cuLogo } from "../constants";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StudentLogin = () => {
   const studentId = useRef("");
@@ -64,12 +64,12 @@ const StudentLogin = () => {
               Sorry, your password was incorrect. Please double-check your
               password.
             </center>
-            <a
-              href="#"
+            <Link
+              to={"/forgotPassword/" + "Student"}
               className="text-right text-white text-sm hover:text-base_red font-montserrat"
             >
               Forget Password?
-            </a>
+            </Link>
             <button onClick={authenticateStudent} className="login-button">
               Login
             </button>

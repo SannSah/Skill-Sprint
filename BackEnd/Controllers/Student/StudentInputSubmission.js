@@ -12,6 +12,7 @@ async function Submission(req, res) {
 
   const studentInfo = JSON.parse(req.body.student);
   const imageUrl = req.files.image;
+  console.log(imageUrl)
   const leetcodeId = studentInfo.CodingId[1];
   const gfgId = studentInfo.CodingId[2];
   const hackerrankId = studentInfo.CodingId[3];
