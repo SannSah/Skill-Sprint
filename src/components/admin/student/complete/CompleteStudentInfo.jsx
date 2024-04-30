@@ -42,7 +42,7 @@ const CompleteStudentInfo = () => {
         )}
         {studentData != null && (
           <StudentAcademic
-            academicInfo={studentData.academicinfo[0].CurrentCourse}
+            academicInfo={studentData.academicinfo}
           />
         )}
       </div>

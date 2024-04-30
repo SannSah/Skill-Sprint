@@ -37,7 +37,7 @@ const CurrentMostRecentCourse = () => {
             placeholder=""
             ref={institude}
           />
-          <div className={`${StudentInputStyle.label_input}`}>Institude</div>
+          <div className={`${StudentInputStyle.label_input}`}>Institute</div>
         </div>
         <div
           className={`ring-2 ring-highlight rounded-md input-2 my-1 ${StudentInputStyle.entry_point}`}

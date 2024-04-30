@@ -51,76 +51,75 @@ const StudentInfo = () => {
           <div className="mx-20 my-4 text-white font-montserrat max-lg:mx-10">
             <p className="text-lg font-medium">Personal Information:</p>
             <div className="flex justify-center max-md:flex-col">
-            <div className="w-[78%] mx-8 my-4 grid grid-cols-3 gap-4 max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
-              <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-                <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  Name:
-                </span>
-                <p type="text" className="px-4">
-                  {user?.StudenCompleteInfo?.personalInfo?.fullName ?? "N/A"}{" "}
-                  {user.fullName}
-                </p>
-              </div>
-              <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-                <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  Phone No.:
-                </span>
-                <p type="text" className="px-4">
-                  {user?.StudenCompleteInfo?.personalInfo?.ContactNumber ??
-                    "N/A"}
-                </p>
-              </div>
+              <div className="w-[78%] mx-8 my-4 grid grid-cols-3 gap-4 max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
+                <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+                  <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+                    Name:
+                  </span>
+                  <p type="text" className="px-4">
+                    {user?.StudenCompleteInfo?.personalInfo?.fullName ?? "N/A"}{" "}
+                    {user.fullName}
+                  </p>
+                </div>
+                <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+                  <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+                    Phone No.:
+                  </span>
+                  <p type="text" className="px-4">
+                    {user?.StudenCompleteInfo?.personalInfo?.ContactNumber ??
+                      "N/A"}
+                  </p>
+                </div>
 
-              <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-                <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  College Mail Id:
-                </span>
-                <p type="text" className="px-4">
-                  {user?.StudenCompleteInfo?.personalInfo?.Email ?? "N/A"}
-                </p>
-              </div>
+                <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+                  <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+                    College Mail Id:
+                  </span>
+                  <p type="text" className="px-4">
+                    {user?.StudenCompleteInfo?.personalInfo?.Email ?? "N/A"}
+                  </p>
+                </div>
 
-              <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-                <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  Roll No:
-                </span>
-                <p type="text" className="px-4">
-                  {user?.StudenCompleteInfo?.personalInfo?.RollNo ?? "N/A"}
-                </p>
+                <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+                  <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+                    Roll No:
+                  </span>
+                  <p type="text" className="px-4">
+                    {user?.StudenCompleteInfo?.personalInfo?.RollNo ?? "N/A"}
+                  </p>
+                </div>
+                <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+                  <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+                    DOB:
+                  </span>
+                  <p type="text" className="px-4">
+                    {user?.StudenCompleteInfo?.personalInfo?.DOB ?? "N/A"}
+                  </p>
+                </div>
+                <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+                  <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+                    Mentor:
+                  </span>
+                  <p type="text" className="px-4">
+                    {user?.StudenCompleteInfo?.personalInfo?.Mentor ?? "N/A"}
+                  </p>
+                </div>
+                <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
+                  <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
+                    Session:
+                  </span>
+                  <p type="text" className="px-4">
+                    {user?.StudenCompleteInfo?.personalInfo?.session ?? "N/A"}
+                  </p>
+                </div>
               </div>
-              <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-                <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  DOB:
-                </span>
-                <p type="text" className="px-4">
-                  {user?.StudenCompleteInfo?.personalInfo?.DOB ?? "N/A"}
-                </p>
-              </div>
-              <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-                <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  Mentor:
-                </span>
-                <p type="text" className="px-4">
-                  {user?.StudenCompleteInfo?.personalInfo?.Mentor ?? "N/A"}
-                </p>
-              </div>
-              <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
-                <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  Session:
-                </span>
-                <p type="text" className="px-4">
-                  {user?.StudenCompleteInfo?.personalInfo?.session ?? "N/A"}
-                </p>
-              </div>
-            </div>
-            <div className="rounded-md overflow-hidden">
+              <div className="rounded-md overflow-hidden">
                 <img
                   src={url}
                   alt="student profile picture"
                   className="w-[160px] h-[170px] object-cover object-center rounded-md"
                 />
               </div>
-
             </div>
           </div>
 
@@ -359,7 +358,7 @@ const StudentInfo = () => {
             <div className="mx-8 my-4 grid grid-cols-3 gap-4 max-lg:mx-4 max-lg:grid-cols-2 max-md:mx-2 max-md:grid-cols-1">
               <div className="ring-2 ring-highlight rounded-md p-2 my-1 relative">
                 <span className="absolute top-[-12px] bg-primary text-[#ababab] px-2 text-sm">
-                  Institude:
+                  Institute:
                 </span>
                 <p type="text" className="px-4">
                   {
