@@ -1,11 +1,27 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { StudentInputInfo } from "../../../store/student-store/student-input";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CodingInfoInput = () => {
     const { leetcodeId,
         hackerRankId,
         codeChefId,
         gfgId, isCorrectLeetcodeId } = useContext(StudentInputInfo);
+        useEffect(() => {
+          if(!isCorrectLeetcodeId){
+            toast.error("Enter Valid Leetcode Id", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              });
+          }
+        }, [isCorrectLeetcodeId])
   return (
     <div className="mx-20 my-14 text-white font-montserrat">
           <p className="text-lg font-medium">Coding Platform details</p>
@@ -51,6 +67,7 @@ const CodingInfoInput = () => {
               />
             </div>
           </div>
+          <ToastContainer />
         </div>
   )
 }

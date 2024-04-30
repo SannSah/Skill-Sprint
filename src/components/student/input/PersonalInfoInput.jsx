@@ -27,6 +27,8 @@ const PersonalInfoInput = (props) => {
       setCurrImage(URL.createObjectURL(event.target.files[0]));
       setImageName(event.target.files[0].name);
     }
+    console.log(event.target.files[0]);
+
   }
   return (
     <div className="mx-20 my-14 text-white font-montserrat">
@@ -91,7 +93,7 @@ const PersonalInfoInput = (props) => {
           </div>
           <p>{imageName}</p>
           <input
-            onChange={handleOnImageChange} hidden required
+            onChange={handleOnImageChange} hidden
             type="file"
             accept="image/jpeg, image/jpg" className="input-image"
           />

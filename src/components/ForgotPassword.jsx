@@ -1,13 +1,24 @@
 import { useParams } from "react-router-dom";
 import Header from "./Header";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ForgotPasswordPopUp from "./popup/ForgotPasswordPopUp";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ForgotPassword = () => {
   const { path } = useParams();
   console.log(path);
+  let userId = useRef("");
   const [popUp, setPopUp] = useState(false);
   console.log(popUp)
+  const handlePasswordUpdate = () => {
+    if(userId.current.value != ""){
+      setPopUp(true);
+    }
+    else{
+      toast.error(`Enter Correct ${path} ID`, {position:"top-center", theme: "dark"})
+    }
+  }
   return (
     <>
       <Header />
@@ -22,13 +33,15 @@ const ForgotPassword = () => {
                 type="text"
                 placeholder={path + " Id"}
                 className="login-input login-input-hover font-montserrat"
+                ref={userId}
               />
-              <button type="button" className="login-button" onClick={() => {setPopUp(true)}}>
+              <button type="button" className="login-button" onClick={handlePasswordUpdate}>
                 Submit
               </button>
             </div>
           </form>
         </div>
+        <ToastContainer />
       </div>
       {popUp && <ForgotPasswordPopUp path={path} setButtonPopup={setPopUp} />}
     </>
