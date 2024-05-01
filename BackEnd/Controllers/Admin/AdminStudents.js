@@ -6,6 +6,7 @@ async function AdminStudents(req, res) {
   try {
     await Student.find({ "personalInfo.session": session_name }).exec().then((result) => {
       result.map((student) => { totalStudents.push(student.personalInfo) })
+      totalStudents.reverse();
       res.json({ totalStudents: totalStudents });
     });
 
