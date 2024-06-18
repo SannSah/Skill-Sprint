@@ -1,5 +1,10 @@
 # React + Vite
 
+Admin:
+Portal Link: https://skill-sprint.netlify.app/adminLogin
+Credientials:
+  ID: VR2014
+  Passowrd: vikas@2014
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
