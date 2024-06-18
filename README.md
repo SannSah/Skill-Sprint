@@ -1,7 +1,7 @@
 # React + Vite
 
 Admin:
-Portal Link: https://skill-sprint.netlify.app/adminLogin
+Portal Link: https://skill-sprint.netlify.app/adminLogin /n
 Credientials:
   ID: VR2014
   Passowrd: vikas@2014
