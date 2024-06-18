@@ -11,15 +11,15 @@ const StudentRanking = () => {
   useEffect(() => {
     setDataFetched(false);
     const token = localStorage.getItem("Student_Token");
-    fetch("http://localhost:8000/student/Ranking", {
+    fetch("https://skill-sprint.onrender.com/student/Ranking", {
       method: "GET",
       headers: {
         authorization: token,
       },
     })
       .then((res) => {
-        if(!res.ok){
-          navigate("/studentLogin", { replace: true })
+        if (!res.ok) {
+          navigate("/studentLogin", { replace: true });
         }
         return res.json();
       })
@@ -42,15 +42,21 @@ const StudentRanking = () => {
     return (
       <div className="h- 6 flex justify-evenly max-md:flex-col max-md:align-center max-md:gap-4">
         <div className="text-base max-md:flex-col">
-          <div className="flex justify-center"><img src={rank2} className="w-48 h-48" /></div>
+          <div className="flex justify-center">
+            <img src={rank2} className="w-48 h-48" />
+          </div>
           <p>{second.fullName}</p>
         </div>
         <div className="text-base">
-        <div className="flex justify-center"><img src={rank1} className="w-64 h-64" /></div>
+          <div className="flex justify-center">
+            <img src={rank1} className="w-64 h-64" />
+          </div>
           <p>{first.fullName}</p>
         </div>
         <div className="text-base">
-        <div className="flex justify-center"><img src={rank3} className="w-48 h-48" /></div>
+          <div className="flex justify-center">
+            <img src={rank3} className="w-48 h-48" />
+          </div>
           <p>{third.fullName}</p>
         </div>
       </div>

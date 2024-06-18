@@ -7,7 +7,7 @@ const StudentOptions = ({ studentId, studentRoll }) => {
   // const []
   async function onUpdate() {
     await fetch(
-      "http://localhost:8000/admin/dashboard/studentCompleteInfo/allowEdit",
+      "https://skill-sprint.onrender.com/admin/dashboard/studentCompleteInfo/allowEdit",
       {
         method: "POST",
         headers: {
@@ -19,14 +19,13 @@ const StudentOptions = ({ studentId, studentRoll }) => {
         }),
       }
     );
-
   }
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
 
   //   console.log("😂😂😂😂😂😂😂😂😂😂😂😂😂😂");
 
-  //   fetch("http://localhost:8000/admin/dashboard/studentCompleteInfo", {
+  //   fetch("https://skill-sprint.onrender.com/admin/dashboard/studentCompleteInfo", {
   //     method: "GET",
   //     headers: {
   //       authorization: token,

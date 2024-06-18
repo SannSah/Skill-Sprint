@@ -16,7 +16,7 @@ const StudentInfo = () => {
     try {
       setDataFetched(false);
       const response = await fetch(
-        "http://localhost:8000/student/PersonalInfo",
+        "https://skill-sprint.onrender.com/student/PersonalInfo",
         {
           headers: {
             authorization: localStorage.getItem("Student_Token"),

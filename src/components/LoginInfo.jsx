@@ -22,7 +22,7 @@ const LoginInfo = () => {
   async function loginHandler(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:8000/admin/singin", {
+      .post("https://skill-sprint.onrender.com/admin/singin", {
         username: adminId.current.value,
         password: adminPassword.current.value,
       })

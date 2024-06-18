@@ -16,26 +16,27 @@ const Ranking = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     setDataFetched(false);
-    if(selectedSession != ""){fetch("http://localhost:8000/admin/dashboard/Ranking", {
-      method: "GET",
-      headers: {
-        authorization: token,
-        session_name: selectedSession,
-      },
-    })
-      .then((res) => {
-        
-        return res.json();
+    if (selectedSession != "") {
+      fetch("https://skill-sprint.onrender.com/admin/dashboard/Ranking", {
+        method: "GET",
+        headers: {
+          authorization: token,
+          session_name: selectedSession,
+        },
       })
-      .then((data) => {
-        if (data.inValidToken) {
-          console.log("Hello")
-          navigate("/adminLogin", { replace: true });
-        }
-        setStudent(data.topTenStudents);
-        setDataFetched(true);
-      });
-  }}, [selectedSession]);
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.inValidToken) {
+            console.log("Hello");
+            navigate("/adminLogin", { replace: true });
+          }
+          setStudent(data.topTenStudents);
+          setDataFetched(true);
+        });
+    }
+  }, [selectedSession]);
   const topThreeStudents = () => {
     const [first, second, third] =
       students.length > 0
@@ -49,21 +50,27 @@ const Ranking = () => {
           className="text-base transition ease-in duration-800 hover:translate-y-[10px] hover:transform hover:scale-105 group"
         >
           <img src={rank2} className="w-48 h-48" />
-          <p className="group-hover:text-green-500 text-lg">2. {second.fullName}</p>
+          <p className="group-hover:text-green-500 text-lg">
+            2. {second.fullName}
+          </p>
         </Link>
         <Link
           to={"/admin/student/completeInfo/" + `${first.RollNo}`}
           className="text-base transition ease-in duration-800 hover:translate-y-[10px] hover:transform hover:scale-105 group"
         >
           <img src={rank1} className="w-64 h-64" />
-          <p className="group-hover:text-green-500 text-xl">1. {first.fullName}</p>
+          <p className="group-hover:text-green-500 text-xl">
+            1. {first.fullName}
+          </p>
         </Link>
         <Link
           to={"/admin/student/completeInfo/" + `${third.RollNo}`}
           className="text-base transition ease-in duration-800 hover:translate-y-[10px] hover:transform hover:scale-105 group"
         >
           <img src={rank3} className="w-48 h-48" />
-          <p className="group-hover:text-green-500 text-md">3. {third.fullName}</p>
+          <p className="group-hover:text-green-500 text-md">
+            3. {third.fullName}
+          </p>
         </Link>
       </div>
     );

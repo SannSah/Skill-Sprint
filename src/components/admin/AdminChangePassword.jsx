@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { cuLogo } from "../../images";
 import { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import ChangePasswordPopUp from "../popup/ChangePasswordPopUp";
 const AdminChangePassword = () => {
   const [buttonPopup, setButtonPopup] = useState(false);
@@ -11,49 +11,57 @@ const AdminChangePassword = () => {
   const confirmNewPass = useRef("");
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:8000/admin/valid", {
+    fetch("https://skill-sprint.onrender.com/admin/valid", {
       headers: {
-        'authorization': localStorage.getItem("token")
-      }
+        authorization: localStorage.getItem("token"),
+      },
     }).then((res) => {
       if (!res.ok) {
-        navigate("/adminLogin", { replace: true })
+        navigate("/adminLogin", { replace: true });
       }
-    })
-  }, [])
+    });
+  }, []);
   const handleChangePassword = (event) => {
     event.preventDefault();
-    if((newPass.current.value === "") || (confirmNewPass.current.value === "") || (newPass.current.value !== confirmNewPass.current.value)){
+    if (
+      newPass.current.value === "" ||
+      confirmNewPass.current.value === "" ||
+      newPass.current.value !== confirmNewPass.current.value
+    ) {
       setButtonPopup(true);
+    } else {
+      fetch(
+        "https://skill-sprint.onrender.com/admin/dashboard/changePassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            oldPassword: oldPass.current.value,
+            newPassword: newPass.current.value,
+          }),
+        }
+      )
+        .then((res) => {
+          if (!res.ok) {
+            navigate("/adminLogin", { replace: true });
+          }
+          return res.json();
+        })
+        .then((data) => {
+          if (data.passwordChanged) {
+            localStorage.removeItem("token");
+            navigate("/adminLogin", { replace: true });
+          } else {
+            console.log("wrong password");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
-    else{fetch("http://localhost:8000/admin/dashboard/changePassword", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: localStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        oldPassword: oldPass.current.value,
-        newPassword: newPass.current.value
-      }),
-    })
-      .then((res) => {
-        if(!res.ok){
-          navigate("/adminLogin", { replace: true });
-        }
-        return res.json()
-      })
-      .then((data) => {
-        if (data.passwordChanged) {
-          localStorage.removeItem('token');
-          navigate("/adminLogin", { replace: true });
-        } else {
-          console.log("wrong password");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });}
   };
   return (
     <div className="flex flex-col justify-start items-center gap-5">
