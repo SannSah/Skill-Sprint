@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 export const SessionList = createContext({
   selectedSession: "",
   sessionList: [],
-  handleSelectedSession: () => { },
+  handleSelectedSession: () => {},
 });
 
 const SessionListProvider = ({ children }) => {
@@ -11,14 +11,14 @@ const SessionListProvider = ({ children }) => {
   let [sessionList, setSessionList] = useState([]);
   const addAllSessions = (data) => {
     setSessionList([...data]);
-    setSelectedSession(data[0].SessionName)
+    setSelectedSession(data[0].SessionName);
   };
   const handleSelectedSession = (e) => {
     setSelectedSession(e);
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:8000/admin/dashboard/session", {
+    fetch("https://skill-sprint.onrender.com/admin/dashboard/session", {
       method: "GET",
       headers: {
         authorization: token,

@@ -22,7 +22,7 @@ const StudentLogin = () => {
   const authenticateStudent = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8000/student/signin", {
+      .post("https://skill-sprint.onrender.com/student/signin", {
         username: studentId.current.value,
         password: studentPassword.current.value,
       })

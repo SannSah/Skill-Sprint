@@ -203,7 +203,7 @@ const StudentInputInfoProvider = ({ children }) => {
           console.log(data.status);
           if (data.status === "success") {
             axios
-              .post("http://localhost:8000/student/Add", formData, {
+              .post("https://skill-sprint.onrender.com/student/Add", formData, {
                 headers: {
                   Authorization: localStorage.getItem("Student_Token"),
                   "Content-Type": "multipart/form-data",
@@ -236,7 +236,7 @@ const StudentInputInfoProvider = ({ children }) => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     }
   };
 
