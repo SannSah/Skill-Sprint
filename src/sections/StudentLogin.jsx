@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cuLogo } from "../constants";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StudentLogin = () => {
   const studentId = useRef("");
@@ -10,9 +10,9 @@ const StudentLogin = () => {
   let [isValidError, setValidError] = useState(true);
   const navigate = useNavigate();
   const token = localStorage.getItem("Student_Token");
-  useEffect(() => {
-    token !== null && navigate("/student/ranking");
-  })
+  // useEffect(() => {
+  //   token !== null && navigate("/student/ranking");
+  // })
 
   useEffect(() => {
     if (validateUser) {
@@ -22,7 +22,7 @@ const StudentLogin = () => {
   const authenticateStudent = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8000/student/signin", {
+      .post("https://skill-sprint.onrender.com/student/signin", {
         username: studentId.current.value,
         password: studentPassword.current.value,
       })
@@ -64,12 +64,12 @@ const StudentLogin = () => {
               Sorry, your password was incorrect. Please double-check your
               password.
             </center>
-            <a
-              href="#"
+            <Link
+              to={"/forgotPassword/" + "Student"}
               className="text-right text-white text-sm hover:text-base_red font-montserrat"
             >
               Forget Password?
-            </a>
+            </Link>
             <button onClick={authenticateStudent} className="login-button">
               Login
             </button>

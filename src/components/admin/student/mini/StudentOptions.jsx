@@ -7,7 +7,7 @@ const StudentOptions = ({ studentId, studentRoll }) => {
   // const []
   async function onUpdate() {
     await fetch(
-      "http://localhost:8000/admin/dashboard/studentCompleteInfo/allowEdit",
+      "https://skill-sprint.onrender.com/admin/dashboard/studentCompleteInfo/allowEdit",
       {
         method: "POST",
         headers: {
@@ -15,18 +15,17 @@ const StudentOptions = ({ studentId, studentRoll }) => {
           authorization: localStorage.getItem("token"),
         },
         body: JSON.stringify({
-          rollNo: 2210987090,
+          rollNo: studentRoll,
         }),
       }
     );
-
   }
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
 
   //   console.log("😂😂😂😂😂😂😂😂😂😂😂😂😂😂");
 
-  //   fetch("http://localhost:8000/admin/dashboard/studentCompleteInfo", {
+  //   fetch("https://skill-sprint.onrender.com/admin/dashboard/studentCompleteInfo", {
   //     method: "GET",
   //     headers: {
   //       authorization: token,
@@ -51,13 +50,13 @@ const StudentOptions = ({ studentId, studentRoll }) => {
       </Link>
       <a
         onClick={onUpdate}
-        className="w-full py-2 bg-cyan-500 rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-cyan-500 text-center"
+        className="w-full py-2 bg-cyan-500 rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-cyan-500 text-center cursor-pointer"
       >
         Update
       </a>
-      <a className="w-full py-2 bg-base_red rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-base_red text-center">
+      {/* <a className="w-full py-2 bg-base_red rounded-md text-white text-lg my-1 hover:bg-transparent hover:ring-2 hover:ring-base_red text-center">
         Delete
-      </a>
+      </a> */}
     </div>
   );
 };

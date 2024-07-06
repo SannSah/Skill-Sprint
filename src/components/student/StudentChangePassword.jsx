@@ -1,13 +1,67 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cuLogo } from "../../images";
+import { useNavigate } from "react-router-dom";
+import ChangePasswordPopUp from "../popup/ChangePasswordPopUp";
 const StudentChangePassword = () => {
+  const navigate = useNavigate();
+  // const [isPasswordChanged,setPasswordChanged]=useState(false);
   const studentRoll = useRef("");
   const oldPass = useRef("");
   const newPass = useRef("");
   const confirmNewPass = useRef("");
+  const [buttonPopup, setButtonPopup] = useState(false);
+  useEffect(() => {
+    fetch("https://skill-sprint.onrender.com/student/validUser", {
+      headers: {
+        authorization: localStorage.getItem("Student_Token"),
+      },
+    }).then((res) => {
+      if (!res.ok) {
+        navigate("/studentLogin", { replace: true });
+      }
+    });
+  }, []);
   const handleChangePassword = (event) => {
     event.preventDefault();
+    if (
+      newPass.current.value === "" ||
+      confirmNewPass.current.value === "" ||
+      newPass.current.value !== confirmNewPass.current.value
+    ) {
+      setButtonPopup(true);
+    } else {
+      fetch("https://skill-sprint.onrender.com/student/changepassword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("Student_Token"),
+        },
+        body: JSON.stringify({
+          oldPassword: oldPass.current.value,
+          newPassword: newPass.current.value,
+        }),
+      })
+        .then((res) => {
+          if (!res.ok) {
+            navigate("/studentLogin", { replace: true });
+          }
+          return res.json();
+        })
+        .then((data) => {
+          // setPasswordChanged(data.passwordChanged);
+          if (data.passwordChanged) {
+            localStorage.removeItem("Student_Token");
+            navigate("/studentLogin", { replace: true });
+          } else {
+            console.log("wrong password");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
+
   return (
     <div className="flex flex-col justify-start items-center gap-5">
       <img src={cuLogo} className="mt-10" width={230} />
@@ -52,6 +106,7 @@ const StudentChangePassword = () => {
           </div>
         </form>
       </div>
+      {buttonPopup && <ChangePasswordPopUp setButtonPopup={setButtonPopup} />}
     </div>
   );
 };

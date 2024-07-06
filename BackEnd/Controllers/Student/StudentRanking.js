@@ -12,8 +12,8 @@ async function StudentRanking(req, res) {
 
       studentsDetails.sort((studentDetail1, studentDetail2) => {
         return (
-          studentDetail2.CodingInfo[1].LeetCode.Ranking -
-          studentDetail1.CodingInfo[1].LeetCode.Ranking
+          studentDetail1.CodingInfo[1].LeetCode.Ranking -
+          studentDetail2.CodingInfo[1].LeetCode.Ranking
         );
       });
 

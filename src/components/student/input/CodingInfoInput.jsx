@@ -1,11 +1,27 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { StudentInputInfo } from "../../../store/student-store/student-input";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CodingInfoInput = () => {
     const { leetcodeId,
         hackerRankId,
         codeChefId,
-        gfgId } = useContext(StudentInputInfo);
+        gfgId, isCorrectLeetcodeId } = useContext(StudentInputInfo);
+        useEffect(() => {
+          if(!isCorrectLeetcodeId){
+            toast.error("Enter Valid Leetcode Id", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              });
+          }
+        }, [isCorrectLeetcodeId])
   return (
     <div className="mx-20 my-14 text-white font-montserrat">
           <p className="text-lg font-medium">Coding Platform details</p>
@@ -25,7 +41,7 @@ const CodingInfoInput = () => {
               <p>:</p>
               <input
                 type="text"
-                className="w-64 bg-transparent outline-none ring-2 ring-highlight rounded-md h-[40px] px-4 focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-500"
+                className={`w-64 bg-transparent outline-none ring-2 ring-highlight rounded-md h-[40px] px-4 focus:ring-2 focus:ring-green-500 hover:ring-2 hover:ring-green-500 ${isCorrectLeetcodeId === false && "ring-red-500"} ${isCorrectLeetcodeId === true && "ring-highlight"}`}
                 placeholder="Enter Leetcode User Id"
                 ref={leetcodeId}
               />
@@ -51,6 +67,7 @@ const CodingInfoInput = () => {
               />
             </div>
           </div>
+          <ToastContainer />
         </div>
   )
 }

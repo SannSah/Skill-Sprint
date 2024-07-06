@@ -1,10 +1,29 @@
 import StudentOptions from "./StudentOptions";
+import { profilePlaceholder } from "../../../../images";
 
 const MiniStudentInfo = ({ student }) => {
+  {
+    console.log(student.image);
+  }
+
   return (
     <>
       <div className="w-full min-h-[175px] bg-primary shadow-neo rounded-lg flex items-center my-6 p-3">
-        <div className="bg-white w-[160px] h-[150px] flex-none rounded-md"></div>
+        <div className="bg-white w-[160px] h-[150px] flex-none align-center rounded-md overflow-hidden ">
+          {student.image === undefined ? (
+            <img
+              src={profilePlaceholder}
+              alt=""
+              className="object-cover object-center h-full w-full"
+            />
+          ) : (
+            <img
+              src={student.image} width={200} height={200}
+              alt="student profile picture"
+              className="object-cover object-center h-full w-full"
+            />
+          )}
+        </div>
         <div className="mx-3 h-full flex-1">
           <div className="grid grid-cols-2 gap-2 p-4 font-montserrat">
             <div className="text-white flex">

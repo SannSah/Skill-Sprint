@@ -4,14 +4,14 @@ import secretKey from "../../SecretKey.js";
 
 async function adminSignin(req, res) {
   const { username, password } = req.body;
-  
+
   try {
     const admin = await Admin.findOne({ name: username, password: password });
 
     if (admin) {
-      const token = jwt.sign({ adminId: admin._id,D_id:admin.Department_id}, secretKey);
+      const token = jwt.sign({ adminId: admin._id, D_id: admin.Department_id }, secretKey, { expiresIn: '10h' });
       res.json({ isValid: true, token: token });
-      
+
     } else {
       res.json({ isValid: false });
     }

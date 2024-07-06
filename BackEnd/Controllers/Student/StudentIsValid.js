@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import secretKey from '../../SecretKey.js';
 import User from '../../Models/UserModel.js';
 
-function StudentIsValid(req, res, next) {
+function StudentIsValid(req, res) {
   const token = req.headers.authorization;
   if (!token) {
     return res.sendStatus(401);
@@ -18,7 +18,8 @@ function StudentIsValid(req, res, next) {
       if (!user) {
         return res.status(403).json({ inValidToken: true });
       }else{
-        res.json({inValidToken:false});
+        const userInfo={username:user.username,session:user.session}
+        res.json({inValidToken:false,UserInfo:userInfo});
       }
     }
   });

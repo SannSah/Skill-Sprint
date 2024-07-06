@@ -11,13 +11,16 @@ const CompleteStudentInfo = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:8000/admin/dashboard/studentCompleteInfo", {
-      method: "GET",
-      headers: {
-        authorization: token,
-        _id: id,
-      },
-    })
+    fetch(
+      "https://skill-sprint.onrender.com/admin/dashboard/studentCompleteInfo",
+      {
+        method: "GET",
+        headers: {
+          authorization: token,
+          _id: id,
+        },
+      }
+    )
       .then((res) => {
         return res.json();
       })
@@ -41,9 +44,7 @@ const CompleteStudentInfo = () => {
           <StudentCoding codingInfo={studentData.CodingInfo} />
         )}
         {studentData != null && (
-          <StudentAcademic
-            academicInfo={studentData.academicinfo[0].CurrentCourse}
-          />
+          <StudentAcademic academicInfo={studentData.academicinfo} />
         )}
       </div>
     </>

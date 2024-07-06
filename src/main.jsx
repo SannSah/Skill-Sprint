@@ -17,6 +17,7 @@ import CompleteStudentInfoProvider from "./store/complete-student-info.jsx";
 import StudentInputInfoProvider from "./store/student-store/student-input.jsx";
 import AdminChangePassword from "./components/admin/AdminChangePassword.jsx";
 import StudentChangePassword from "./components/student/StudentChangePassword.jsx";
+import ForgotPassword from "./components/ForgotPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/adminLogin", element: <AdminLogin /> },
       { path: "/studentLogin", element: <StudentLogin /> },
+      { path: "/forgotPassword/:path", element: <ForgotPassword /> },
       {
         path: "/admin/student/completeInfo/:id",
         element: (

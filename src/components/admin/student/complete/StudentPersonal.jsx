@@ -1,3 +1,4 @@
+import { profilePlaceholder } from "../../../../images";
 const StudentPersonal = ({ personalInfo }) => {
   return (
     <fieldset className="outline outline-2 outline-highlight rounded-sm w-full p-6 relative">
@@ -44,7 +45,21 @@ const StudentPersonal = ({ personalInfo }) => {
             </div>
           </div>
         </div>
-        <div className=" bg-white w-[160px] h-[150px] flex-none rounded-md"></div>
+        <div className="bg-white w-[160px] h-[170px] flex-none align-center rounded-md overflow-hidden ">
+        {personalInfo.image === undefined ? (
+            <img
+              src={profilePlaceholder}
+              alt=""
+              className="object-cover object-center h-full w-full"
+            />
+          ) : (
+            <img
+              src={personalInfo.image} 
+              alt="student profile picture"
+              className="object-cover object-center h-full w-full"
+            />
+          )}
+        </div>
       </div>
     </fieldset>
   );

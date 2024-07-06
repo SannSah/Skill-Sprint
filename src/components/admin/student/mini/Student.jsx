@@ -14,7 +14,7 @@ const Student = () => {
   useEffect(() => {
     setDataFetched(false);
     const token = localStorage.getItem("token");
-    fetch("http://localhost:8000/admin/dashboard/students", {
+    fetch("https://skill-sprint.onrender.com/admin/dashboard/students", {
       method: "GET",
       headers: {
         authorization: token,
@@ -40,8 +40,10 @@ const Student = () => {
   };
   return (
     <CompleteStudentInfoProvider>
-      <div className="w-10/12 h-[110%] mx-auto mt-[20px] mb
-      -[20px] px-4">
+      <div
+        className="w-10/12 h-[110%] mx-auto mt-[20px] mb
+      -[20px] px-4"
+      >
         <div>
           <SearchBar handleSearchOnChange={handleSearchOnChange} />
         </div>
@@ -55,9 +57,11 @@ const Student = () => {
           //   console.log(roll)
           //   { return <MiniStudentInfo student={student} key={idx} />}
           // })
-          students.map((student, idx) => (student.RollNo.includes(searchInput) &&
-            <MiniStudentInfo student={student} key={idx} />)
-            
+          students.map(
+            (student, idx) =>
+              student.RollNo.includes(searchInput) && (
+                <MiniStudentInfo student={student} key={idx} />
+              )
           )
         )}
       </div>
